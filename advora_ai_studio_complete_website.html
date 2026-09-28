@@ -1,0 +1,2259 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover" />
+  <title>ADVORA AI — Next-Gen Commercial Production & Virtual CGI Studio</title>
+  
+  <!-- Google Fonts: Syne (Luxury Display) & Plus Jakarta Sans (Precision Body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Syne:wght@500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              black: '#080808',
+              surface: '#121212',
+              card: '#161616',
+              elevated: '#1c1c1c',
+              border: 'rgba(255, 255, 255, 0.08)',
+              borderHover: 'rgba(255, 255, 255, 0.20)',
+              accent: '#f5f5f5',
+              muted: '#8e8e93',
+              subtle: '#2c2c2e'
+            }
+          },
+          fontFamily: {
+            syne: ['Syne', 'sans-serif'],
+            sans: ['"Plus Jakarta Sans"', 'sans-serif']
+          },
+          boxShadow: {
+            'glow-sm': '0 0 25px -5px rgba(255, 255, 255, 0.08)',
+            'glow-modal': '0 0 80px -10px rgba(0, 0, 0, 0.95), 0 0 30px -5px rgba(255, 255, 255, 0.06)',
+            'glass': '0 8px 32px 0 rgba(0, 0, 0, 0.65)'
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    html {
+      -webkit-tap-highlight-color: transparent;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    ::-webkit-scrollbar {
+      width: 5px;
+      height: 5px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #080808;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #262626;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #404040;
+    }
+
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    video::-webkit-media-controls {
+      display: none !important;
+    }
+
+    .comparison-container {
+      position: relative;
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: none;
+    }
+    .comparison-slider-handle {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: #ffffff;
+      transform: translateX(-50%);
+      cursor: ew-resize;
+      z-index: 25;
+      box-shadow: 0 0 16px rgba(255, 255, 255, 0.85);
+      touch-action: none;
+    }
+
+    .pb-safe {
+      padding-bottom: env(safe-area-inset-bottom, 1rem);
+    }
+  </style>
+</head>
+
+<body class="bg-brand-black text-gray-200 font-sans antialiased selection:bg-white selection:text-black overflow-x-hidden min-h-screen relative">
+
+  <!-- Ambient Luxury Backdrop Lighting -->
+  <div class="fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[450px] sm:h-[550px] bg-gradient-to-b from-white/[0.05] via-transparent to-transparent blur-3xl pointer-events-none -z-10"></div>
+  <div class="fixed top-[40%] right-[-10%] w-[320px] sm:w-[500px] h-[320px] sm:h-[500px] bg-white/[0.015] rounded-full blur-[120px] pointer-events-none -z-10"></div>
+  <div class="fixed bottom-0 left-[-10%] w-[320px] sm:w-[500px] h-[320px] sm:h-[500px] bg-white/[0.015] rounded-full blur-[120px] pointer-events-none -z-10"></div>
+
+  <!-- Floating Glass Navbar -->
+  <header class="fixed top-3 sm:top-5 inset-x-0 z-40 flex justify-center px-3 sm:px-6 pointer-events-none">
+    <nav class="pointer-events-auto flex items-center justify-between gap-3 sm:gap-8 px-4 sm:px-6 py-2.5 sm:py-3 rounded-full bg-brand-surface/85 backdrop-blur-xl border border-white/[0.09] shadow-glass max-w-5xl w-full transition-all duration-300">
+      
+      <!-- Brand Logo -->
+      <a href="#" class="flex items-center gap-2 group shrink-0">
+        <div class="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white flex items-center justify-center text-black font-syne font-extrabold text-xs sm:text-sm tracking-tighter group-hover:scale-105 transition-transform duration-300">
+          A
+        </div>
+        <div class="flex items-center gap-1.5 sm:gap-2">
+          <span class="font-syne font-bold tracking-tight text-white text-sm sm:text-base">ADVORA<span class="text-white/40">.AI</span></span>
+          <span class="flex h-2 w-2 relative" title="Studio Operating at Full Capacity">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+          </span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <div class="hidden lg:flex items-center gap-6 text-xs uppercase tracking-widest font-medium text-gray-400">
+        <a href="#work" class="hover:text-white transition-colors duration-200">Reel</a>
+        <a href="#breakdown" class="hover:text-white transition-colors duration-200">BTS CGI</a>
+        <a href="#pipeline" class="hover:text-white transition-colors duration-200">Pipeline</a>
+        <a href="#calculator" class="hover:text-white transition-colors duration-200">Calculator</a>
+        <a href="#comparison" class="hover:text-white transition-colors duration-200">Comparison</a>
+        <a href="#faq" class="hover:text-white transition-colors duration-200">FAQ</a>
+      </div>
+
+      <!-- Action Buttons & Mobile Toggle -->
+      <div class="flex items-center gap-2">
+        <button id="navBookCallBtn" class="hidden md:flex items-center gap-1.5 px-3 py-1.5 sm:py-2 rounded-full border border-white/15 text-xs font-semibold uppercase tracking-wider text-gray-300 hover:text-white hover:bg-white/10 transition-all duration-200">
+          <i data-lucide="calendar" class="w-3.5 h-3.5 text-emerald-400"></i>
+          <span>15-Min Call</span>
+        </button>
+
+        <a href="#contact" class="relative group overflow-hidden rounded-full px-3.5 sm:px-4 py-1.5 sm:py-2 text-xs font-semibold uppercase tracking-wider text-black bg-white hover:text-white transition-colors duration-300 shrink-0">
+          <span class="absolute inset-0 w-full h-full bg-neutral-900 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out"></span>
+          <span class="relative flex items-center gap-1.5 z-10">
+            Pilot Ad
+            <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+          </span>
+        </a>
+
+        <!-- Mobile Hamburger Button -->
+        <button id="mobileMenuBtn" aria-label="Toggle Navigation" class="lg:hidden p-2 rounded-full text-gray-300 hover:text-white hover:bg-white/10 transition-colors w-9 h-9 flex items-center justify-center">
+          <i data-lucide="menu" class="w-5 h-5"></i>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Mobile Navigation Drawer -->
+  <div id="mobileMenu" class="fixed inset-0 z-50 bg-black/95 backdrop-blur-2xl flex flex-col justify-center items-center gap-6 text-lg sm:text-xl font-syne uppercase tracking-wider transition-all duration-300 opacity-0 pointer-events-none px-6">
+    <a href="#work" class="mobile-link text-gray-300 hover:text-white">Commercial Reel</a>
+    <a href="#breakdown" class="mobile-link text-gray-300 hover:text-white">BTS CGI Breakdown</a>
+    <a href="#pipeline" class="mobile-link text-gray-300 hover:text-white">Production Pipeline</a>
+    <a href="#calculator" class="mobile-link text-gray-300 hover:text-white">Cost Calculator</a>
+    <a href="#comparison" class="mobile-link text-gray-300 hover:text-white">Shoot Comparison</a>
+    <a href="#faq" class="mobile-link text-gray-300 hover:text-white">FAQ</a>
+    <a href="#contact" class="mobile-link text-gray-300 hover:text-white">Commission Pilot</a>
+    
+    <button id="mobileBookCallBtn" class="mt-4 px-6 py-3 rounded-full border border-emerald-500/40 bg-emerald-500/15 text-emerald-300 text-xs font-semibold flex items-center gap-2 active:scale-95 transition-transform">
+      <i data-lucide="calendar" class="w-4 h-4"></i> Book 15-Min Discovery Call
+    </button>
+    <button id="closeMobileMenu" aria-label="Close navigation" class="absolute top-6 right-6 p-2 rounded-full bg-white/10 text-white w-10 h-10 flex items-center justify-center">
+      <i data-lucide="x" class="w-6 h-6"></i>
+    </button>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="relative pt-28 sm:pt-40 md:pt-48 pb-16 sm:pb-20 px-4 sm:px-6 max-w-6xl mx-auto flex flex-col items-center text-center">
+    
+    <!-- Badge -->
+    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/10 bg-white/[0.03] backdrop-blur-md mb-6 sm:mb-8 group">
+      <span class="w-1.5 h-1.5 rounded-full bg-white/80 group-hover:scale-125 transition-transform"></span>
+      <span class="text-[10px] sm:text-[11px] uppercase tracking-[0.2em] font-medium text-gray-300">
+        NEXT-GEN VIRTUAL COMMERCIAL PRODUCTION
+      </span>
+      <i data-lucide="sparkles" class="w-3 h-3 text-gray-400"></i>
+    </div>
+
+    <!-- Editorial Luxury Headline -->
+    <h1 class="font-syne font-extrabold text-3xl sm:text-5xl md:text-7xl lg:text-[5.25rem] leading-[1.12] sm:leading-[1.08] tracking-tight text-white max-w-5xl mb-5 sm:mb-6">
+      Cinematic Commercials.
+      <span class="block text-transparent bg-clip-text bg-gradient-to-r from-white via-neutral-300 to-neutral-500">
+        Studio Fidelity. Zero Shoot Hassle.
+      </span>
+    </h1>
+
+    <!-- Subtitle -->
+    <p class="font-normal text-sm sm:text-lg md:text-xl text-gray-400 max-w-2xl mb-8 sm:mb-10 leading-relaxed font-sans px-2">
+      High-converting visual commercials and performance UGC crafted for modern D2C & luxury brands via hyper-realistic virtual CGI production.
+    </p>
+
+    <!-- Dual Action CTAs -->
+    <div class="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 w-full sm:w-auto mb-12 sm:mb-16 px-4 sm:px-0">
+      <a href="#work" class="w-full sm:w-auto px-7 py-3.5 rounded-full bg-white text-black font-semibold text-xs sm:text-sm hover:bg-neutral-200 active:scale-95 transition-all duration-200 flex items-center justify-center gap-2 group shadow-glow-sm">
+        Explore Portfolio Reel
+        <i data-lucide="arrow-down" class="w-4 h-4 group-hover:translate-y-0.5 transition-transform duration-200"></i>
+      </a>
+      <a href="#pipeline" class="w-full sm:w-auto px-7 py-3.5 rounded-full bg-brand-surface border border-white/15 text-gray-200 font-semibold text-xs sm:text-sm hover:bg-white/[0.08] hover:text-white active:scale-95 transition-all duration-200 flex items-center justify-center gap-2">
+        Our Creative Pipeline
+        <i data-lucide="layers" class="w-4 h-4 text-gray-400"></i>
+      </a>
+    </div>
+
+    <!-- Key Performance Metrics Ribbon -->
+    <div class="w-full grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-4 p-3 sm:p-4 rounded-2xl bg-brand-surface/60 border border-white/[0.07] backdrop-blur-xl">
+      <div class="flex flex-col items-center justify-center py-3.5 px-2 rounded-xl bg-white/[0.02] border border-white/[0.03]">
+        <div class="font-syne font-bold text-xl sm:text-3xl text-white tracking-tight">70%</div>
+        <div class="text-[10px] sm:text-[11px] uppercase tracking-wider text-gray-400 mt-0.5">Cost Reduction</div>
+      </div>
+      <div class="flex flex-col items-center justify-center py-3.5 px-2 rounded-xl bg-white/[0.02] border border-white/[0.03]">
+        <div class="font-syne font-bold text-xl sm:text-3xl text-white tracking-tight">4.2x</div>
+        <div class="text-[10px] sm:text-[11px] uppercase tracking-wider text-gray-400 mt-0.5">Avg. CTR Lift</div>
+      </div>
+      <div class="flex flex-col items-center justify-center py-3.5 px-2 rounded-xl bg-white/[0.02] border border-white/[0.03]">
+        <div class="font-syne font-bold text-xl sm:text-3xl text-white tracking-tight">48-72h</div>
+        <div class="text-[10px] sm:text-[11px] uppercase tracking-wider text-gray-400 mt-0.5">Rapid Delivery</div>
+      </div>
+      <div class="flex flex-col items-center justify-center py-3.5 px-2 rounded-xl bg-white/[0.02] border border-white/[0.03]">
+        <div class="font-syne font-bold text-xl sm:text-3xl text-white tracking-tight">4K UHD</div>
+        <div class="text-[10px] sm:text-[11px] uppercase tracking-wider text-gray-400 mt-0.5">Master Output</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Filterable Portfolio Showcase (6 Sample Videos) -->
+  <section id="work" class="py-16 sm:py-24 px-4 sm:px-6 max-w-7xl mx-auto scroll-mt-20 sm:scroll-mt-24">
+    
+    <!-- Section Header & Filter Controls -->
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-5 mb-8 sm:mb-12">
+      <div>
+        <div class="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-gray-400 mb-2">
+          <i data-lucide="clapperboard" class="w-3.5 h-3.5 text-white"></i>
+          Curated Commercial Reel
+        </div>
+        <h2 class="font-syne font-bold text-2xl sm:text-4xl text-white tracking-tight">
+          Engineered for Retention & Awe
+        </h2>
+      </div>
+
+      <!-- Category Filter Pills -->
+      <div class="flex items-center gap-1.5 p-1.5 rounded-full bg-brand-surface border border-white/10 overflow-x-auto max-w-full no-scrollbar shrink-0" id="filterBar">
+        <button data-filter="all" class="filter-btn active-filter px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs font-semibold uppercase tracking-wider whitespace-nowrap transition-all duration-200 bg-white text-black">
+          All
+        </button>
+        <button data-filter="luxury" class="filter-btn px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs font-semibold uppercase tracking-wider whitespace-nowrap text-gray-400 hover:text-white transition-all duration-200">
+          Luxury & CGI
+        </button>
+        <button data-filter="beauty" class="filter-btn px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs font-semibold uppercase tracking-wider whitespace-nowrap text-gray-400 hover:text-white transition-all duration-200">
+          Beauty & Skincare
+        </button>
+        <button data-filter="tech" class="filter-btn px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs font-semibold uppercase tracking-wider whitespace-nowrap text-gray-400 hover:text-white transition-all duration-200">
+          Consumer Tech
+        </button>
+        <button data-filter="ugc" class="filter-btn px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs font-semibold uppercase tracking-wider whitespace-nowrap text-gray-400 hover:text-white transition-all duration-200">
+          Performance UGC
+        </button>
+      </div>
+    </div>
+
+    <!-- Quick Preview Local Linker Banner (Enables live playback in any browser iframe) -->
+    <div id="fileLinkerBanner" class="mb-6 p-3.5 sm:p-4 rounded-2xl bg-white/[0.03] border border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
+      <div class="flex items-center gap-2.5 text-gray-300">
+        <i data-lucide="video" class="w-4 h-4 text-emerald-400 shrink-0"></i>
+        <span><strong>Preview Mode:</strong> If your browser blocks local filesystem access, link your 6 video files with one tap:</span>
+      </div>
+      <div class="flex items-center gap-2 shrink-0">
+        <label for="bulkVideoInput" class="px-3 py-1.5 rounded-lg bg-white text-black font-semibold text-xs cursor-pointer hover:bg-neutral-200 transition-colors flex items-center gap-1.5">
+          <i data-lucide="upload" class="w-3.5 h-3.5"></i>
+          Select 6 MP4 Files
+        </label>
+        <input type="file" id="bulkVideoInput" multiple accept="video/mp4,video/*" class="hidden" />
+      </div>
+    </div>
+
+    <!-- Video Showcase Grid (9:16 Aspect Ratio) -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-8" id="portfolioGrid">
+
+      <!-- Card 1: Noiré Éclipse -->
+      <div class="project-card group relative aspect-[9/16] rounded-2xl overflow-hidden bg-brand-card border border-white/[0.08] hover:border-white/25 active:border-white/40 transition-all duration-300 shadow-lg cursor-pointer"
+           data-slug="noire-eclipse"
+           data-index="0"
+           data-category="luxury"
+           data-title="NOIRÉ ÉCLIPSE"
+           data-tagline="Haute Parfumerie Film"
+           data-desc="Moody luxury fragrance film featuring atmospheric smoke dynamics, ray-traced glass dispersion, and fluid spray physics."
+           data-src="clean_1000016941.mp4"
+           data-fallback-src="clean_1000016941_2.mp4"
+           data-alt-src="1000016945.mp4"
+           data-tags="Fluid Dynamics, Cinematic Lighting, Ray Tracing, 9:16 Master"
+           data-metrics="4.6x Engagement Rate">
+        
+        <video class="smart-grid-video absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" 
+               autoplay loop muted playsinline webkit-playsinline preload="auto">
+          <source src="clean_1000016941.mp4" type="video/mp4" />
+          <source src="clean_1000016941_2.mp4" type="video/mp4" />
+          <source src="1000016945.mp4" type="video/mp4" />
+        </video>
+
+        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-black/40 pointer-events-none"></div>
+
+        <div class="absolute top-3 inset-x-3 sm:top-4 sm:inset-x-4 flex items-center justify-between pointer-events-none z-10">
+          <span class="px-2.5 py-1 rounded-full text-[10px] uppercase font-bold tracking-widest bg-black/70 backdrop-blur-md border border-white/10 text-white/90">
+            Luxury & CGI
+          </span>
+          <span class="px-2.5 py-1 rounded-full text-[10px] font-mono bg-white/10 backdrop-blur-md text-white/80 flex items-center gap-1">
+            <i data-lucide="play" class="w-2.5 h-2.5 fill-current"></i> 0:22
+          </span>
+        </div>
+
+        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 pointer-events-none">
+          <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-white/90 backdrop-blur-md text-black flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform duration-300">
+            <i data-lucide="play" class="w-5 h-5 sm:w-6 sm:h-6 fill-current ml-0.5"></i>
+          </div>
+        </div>
+
+        <div class="absolute bottom-3 inset-x-3 sm:bottom-4 sm:inset-x-4 p-3.5 sm:p-4 rounded-xl bg-black/70 backdrop-blur-md border border-white/10 pointer-events-none z-10">
+          <div class="text-[10px] sm:text-[11px] uppercase tracking-wider text-gray-400 font-medium">Haute Parfumerie</div>
+          <div class="font-syne font-bold text-base sm:text-lg text-white mt-0.5">NOIRÉ ÉCLIPSE</div>
+          <p class="text-xs text-gray-300 mt-1 line-clamp-2 leading-relaxed">
+            Moody luxury fragrance film featuring atmospheric smoke and fluid spray dynamics.
+          </p>
+          <div class="mt-2.5 flex items-center justify-between text-[10px] sm:text-[11px] pt-2 border-t border-white/10 text-gray-400">
+            <span class="flex items-center gap-1 text-white/80">
+              <i data-lucide="sparkles" class="w-3 h-3 text-white"></i> 4K Master
+            </span>
+            <span class="text-white group-hover:underline flex items-center gap-1 font-medium">
+              View Reel <i data-lucide="chevron-right" class="w-3 h-3"></i>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2: Minimalist Hydraglow -->
+      <div class="project-card group relative aspect-[9/16] rounded-2xl overflow-hidden bg-brand-card border border-white/[0.08] hover:border-white/25 active:border-white/40 transition-all duration-300 shadow-lg cursor-pointer"
+           data-slug="minimalist-hydraglow"
+           data-index="1"
+           data-category="beauty"
+           data-title="MINIMALIST HYDRAGLOW"
+           data-tagline="D2C Botanical Skincare"
+           data-desc="Clean botanical skincare commercial with macro droplet physics, realistic epidermal light diffusion, and sunlit serenity."
+           data-src="VN20260924_110347.mp4"
+           data-fallback-src="VN20260924_110347_2.mp4"
+           data-alt-src="1000016968.mp4"
+           data-tags="Macro Physics, Subsurface Scattering, Natural Daylight, D2C Beauty"
+           data-metrics="3.8x ROAS Benchmark">
+        
+        <video class="smart-grid-video absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" 
+               autoplay loop muted playsinline webkit-playsinline preload="auto">
+          <source src="VN20260924_110347.mp4" type="video/mp4" />
+          <source src="VN20260924_110347_2.mp4" type="video/mp4" />
+          <source src="1000016968.mp4" type="video/mp4" />
+        </video>
+
+        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-black/40 pointer-events-none"></div>
+
+        <div class="absolute top-3 inset-x-3 sm:top-4 sm:inset-x-4 flex items-center justify-between pointer-events-none z-10">
+          <span class="px-2.5 py-1 rounded-full text-[10px] uppercase font-bold tracking-widest bg-black/70 backdrop-blur-md border border-white/10 text-white/90">
+            Beauty & Skincare
+          </span>
+          <span class="px-2.5 py-1 rounded-full text-[10px] font-mono bg-white/10 backdrop-blur-md text-white/80 flex items-center gap-1">
+            <i data-lucide="play" class="w-2.5 h-2.5 fill-current"></i> 0:20
+          </span>
+        </div>
+
+        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 pointer-events-none">
+          <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-white/90 backdrop-blur-md text-black flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform duration-300">
+            <i data-lucide="play" class="w-5 h-5 sm:w-6 sm:h-6 fill-current ml-0.5"></i>
+          </div>
+        </div>
+
+        <div class="absolute bottom-3 inset-x-3 sm:bottom-4 sm:inset-x-4 p-3.5 sm:p-4 rounded-xl bg-black/70 backdrop-blur-md border border-white/10 pointer-events-none z-10">
+          <div class="text-[10px] sm:text-[11px] uppercase tracking-wider text-gray-400 font-medium">D2C Botanical Skincare</div>
+          <div class="font-syne font-bold text-base sm:text-lg text-white mt-0.5">MINIMALIST HYDRAGLOW</div>
+          <p class="text-xs text-gray-300 mt-1 line-clamp-2 leading-relaxed">
+            Clean botanical skincare commercial with macro droplet physics and realistic skin texture.
+          </p>
+          <div class="mt-2.5 flex items-center justify-between text-[10px] sm:text-[11px] pt-2 border-t border-white/10 text-gray-400">
+            <span class="flex items-center gap-1 text-white/80">
+              <i data-lucide="droplet" class="w-3 h-3 text-cyan-400"></i> Macro Subsurface
+            </span>
+            <span class="text-white group-hover:underline flex items-center gap-1 font-medium">
+              View Reel <i data-lucide="chevron-right" class="w-3 h-3"></i>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3: Volt Earbuds -->
+      <div class="project-card group relative aspect-[9/16] rounded-2xl overflow-hidden bg-brand-card border border-white/[0.08] hover:border-white/25 active:border-white/40 transition-all duration-300 shadow-lg cursor-pointer"
+           data-slug="volt-earbuds"
+           data-index="2"
+           data-category="tech"
+           data-title="VOLT EARBUDS"
+           data-tagline="Audiophile Hardware Commercial"
+           data-desc="Precision matte-black audio hardware commercial with volumetric night lighting, metallic acoustics, and city bokeh."
+           data-src="VOLT_ad_final.mp4"
+           data-fallback-src="VOLT_ad_final_2.mp4"
+           data-alt-src="1000017186.mp4"
+           data-tags="CAD Ingestion, Volumetric Haze, Cyberpunk Palette, Sound FX Master"
+           data-metrics="5.1% Direct Click-Through">
+        
+        <video class="smart-grid-video absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" 
+               autoplay loop muted playsinline webkit-playsinline preload="auto">
+          <source src="VOLT_ad_final.mp4" type="video/mp4" />
+          <source src="VOLT_ad_final_2.mp4" type="video/mp4" />
+          <source src="1000017186.mp4" type="video/mp4" />
+        </video>
+
+        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-black/40 pointer-events-none"></div>
+
+        <div class="absolute top-3 inset-x-3 sm:top-4 sm:inset-x-4 flex items-center justify-between pointer-events-none z-10">
+          <span class="px-2.5 py-1 rounded-full text-[10px] uppercase font-bold tracking-widest bg-black/70 backdrop-blur-md border border-white/10 text-white/90">
+            Consumer Tech
+          </span>
+          <span class="px-2.5 py-1 rounded-full text-[10px] font-mono bg-white/10 backdrop-blur-md text-white/80 flex items-center gap-1">
+            <i data-lucide="play" class="w-2.5 h-2.5 fill-current"></i> 0:15
+          </span>
+        </div>
+
+        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 pointer-events-none">
+          <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-white/90 backdrop-blur-md text-black flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform duration-300">
+            <i data-lucide="play" class="w-5 h-5 sm:w-6 sm:h-6 fill-current ml-0.5"></i>
+          </div>
+        </div>
+
+        <div class="absolute bottom-3 inset-x-3 sm:bottom-4 sm:inset-x-4 p-3.5 sm:p-4 rounded-xl bg-black/70 backdrop-blur-md border border-white/10 pointer-events-none z-10">
+          <div class="text-[10px] sm:text-[11px] uppercase tracking-wider text-gray-400 font-medium">Precision Audio Hardware</div>
+          <div class="font-syne font-bold text-base sm:text-lg text-white mt-0.5">VOLT EARBUDS</div>
+          <p class="text-xs text-gray-300 mt-1 line-clamp-2 leading-relaxed">
+            Matte-black audio hardware commercial with volumetric night lighting and urban reflection.
+          </p>
+          <div class="mt-2.5 flex items-center justify-between text-[10px] sm:text-[11px] pt-2 border-t border-white/10 text-gray-400">
+            <span class="flex items-center gap-1 text-white/80">
+              <i data-lucide="headphones" class="w-3 h-3 text-white"></i> Spatial Sound
+            </span>
+            <span class="text-white group-hover:underline flex items-center gap-1 font-medium">
+              View Reel <i data-lucide="chevron-right" class="w-3 h-3"></i>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4: Noir Bite Gourmet -->
+      <div class="project-card group relative aspect-[9/16] rounded-2xl overflow-hidden bg-brand-card border border-white/[0.08] hover:border-white/25 active:border-white/40 transition-all duration-300 shadow-lg cursor-pointer"
+           data-slug="noir-bite-gourmet"
+           data-index="3"
+           data-category="luxury"
+           data-title="NOIR BITE GOURMET"
+           data-tagline="Gourmet Tabletop Commercial"
+           data-desc="High-impact tabletop food commercial with sizzling steam physics, rich brioche textural lighting, and slow-pour dynamic glaze."
+           data-src="VN20260925_115058.mp4"
+           data-fallback-src="VN20260925_115058_2.mp4"
+           data-alt-src="1000017051.mp4"
+           data-tags="Smoke Simulation, Food Styling, Tabletop Robotics, High Speed Cine"
+           data-metrics="4.1x Crave Index Lift">
+        
+        <video class="smart-grid-video absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" 
+               autoplay loop muted playsinline webkit-playsinline preload="auto">
+          <source src="VN20260925_115058.mp4" type="video/mp4" />
+          <source src="VN20260925_115058_2.mp4" type="video/mp4" />
+          <source src="1000017051.mp4" type="video/mp4" />
+        </video>
+
+        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-black/40 pointer-events-none"></div>
+
+        <div class="absolute top-3 inset-x-3 sm:top-4 sm:inset-x-4 flex items-center justify-between pointer-events-none z-10">
+          <span class="px-2.5 py-1 rounded-full text-[10px] uppercase font-bold tracking-widest bg-black/70 backdrop-blur-md border border-white/10 text-white/90">
+            Luxury & CGI
+          </span>
+          <span class="px-2.5 py-1 rounded-full text-[10px] font-mono bg-white/10 backdrop-blur-md text-white/80 flex items-center gap-1">
+            <i data-lucide="play" class="w-2.5 h-2.5 fill-current"></i> 0:14
+          </span>
+        </div>
+
+        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 pointer-events-none">
+          <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-white/90 backdrop-blur-md text-black flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform duration-300">
+            <i data-lucide="play" class="w-5 h-5 sm:w-6 sm:h-6 fill-current ml-0.5"></i>
+          </div>
+        </div>
+
+        <div class="absolute bottom-3 inset-x-3 sm:bottom-4 sm:inset-x-4 p-3.5 sm:p-4 rounded-xl bg-black/70 backdrop-blur-md border border-white/10 pointer-events-none z-10">
+          <div class="text-[10px] sm:text-[11px] uppercase tracking-wider text-gray-400 font-medium">Tabletop Food & Beverage</div>
+          <div class="font-syne font-bold text-base sm:text-lg text-white mt-0.5">NOIR BITE GOURMET</div>
+          <p class="text-xs text-gray-300 mt-1 line-clamp-2 leading-relaxed">
+            Tabletop food commercial with sizzling steam and rich textural lighting.
+          </p>
+          <div class="mt-2.5 flex items-center justify-between text-[10px] sm:text-[11px] pt-2 border-t border-white/10 text-gray-400">
+            <span class="flex items-center gap-1 text-white/80">
+              <i data-lucide="flame" class="w-3 h-3 text-amber-400"></i> Steam Dynamics
+            </span>
+            <span class="text-white group-hover:underline flex items-center gap-1 font-medium">
+              View Reel <i data-lucide="chevron-right" class="w-3 h-3"></i>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 5: Ruby Flora Hook -->
+      <div class="project-card group relative aspect-[9/16] rounded-2xl overflow-hidden bg-brand-card border border-white/[0.08] hover:border-white/25 active:border-white/40 transition-all duration-300 shadow-lg cursor-pointer"
+           data-slug="ruby-flora-hook"
+           data-index="4"
+           data-category="ugc"
+           data-title="RUBY FLORA HOOK"
+           data-tagline="Direct-Response UGC Jewelry"
+           data-desc="High-converting talking-head viral jewelry ad built with aggressive scroll-stopping hook structure for Meta Reels and TikTok."
+           data-src="892911969_1790406973914933.mp4"
+           data-fallback-src="892911969_1790406973914933_2.mp4"
+           data-alt-src="1000017192.mp4"
+           data-tags="Direct Response, 3-Second Hook, Native Mobile, Conversion UGC"
+           data-metrics="44% 3s Hook Rate">
+        
+        <video class="smart-grid-video absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" 
+               autoplay loop muted playsinline webkit-playsinline preload="auto">
+          <source src="892911969_1790406973914933.mp4" type="video/mp4" />
+          <source src="892911969_1790406973914933_2.mp4" type="video/mp4" />
+          <source src="1000017192.mp4" type="video/mp4" />
+        </video>
+
+        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-black/40 pointer-events-none"></div>
+
+        <div class="absolute top-3 inset-x-3 sm:top-4 sm:inset-x-4 flex items-center justify-between pointer-events-none z-10">
+          <span class="px-2.5 py-1 rounded-full text-[10px] uppercase font-bold tracking-widest bg-black/70 backdrop-blur-md border border-white/10 text-white/90">
+            Performance UGC
+          </span>
+          <span class="px-2.5 py-1 rounded-full text-[10px] font-mono bg-white/10 backdrop-blur-md text-white/80 flex items-center gap-1">
+            <i data-lucide="play" class="w-2.5 h-2.5 fill-current"></i> 0:08
+          </span>
+        </div>
+
+        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 pointer-events-none">
+          <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-white/90 backdrop-blur-md text-black flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform duration-300">
+            <i data-lucide="play" class="w-5 h-5 sm:w-6 sm:h-6 fill-current ml-0.5"></i>
+          </div>
+        </div>
+
+        <div class="absolute bottom-3 inset-x-3 sm:bottom-4 sm:inset-x-4 p-3.5 sm:p-4 rounded-xl bg-black/70 backdrop-blur-md border border-white/10 pointer-events-none z-10">
+          <div class="text-[10px] sm:text-[11px] uppercase tracking-wider text-gray-400 font-medium">Fine Jewelry D2C</div>
+          <div class="font-syne font-bold text-base sm:text-lg text-white mt-0.5">RUBY FLORA HOOK</div>
+          <p class="text-xs text-gray-300 mt-1 line-clamp-2 leading-relaxed">
+            Direct-response talking-head viral jewelry ad built for Meta Reels and TikTok.
+          </p>
+          <div class="mt-2.5 flex items-center justify-between text-[10px] sm:text-[11px] pt-2 border-t border-white/10 text-gray-400">
+            <span class="flex items-center gap-1 text-white/80">
+              <i data-lucide="zap" class="w-3 h-3 text-amber-300"></i> High-CTR Hook
+            </span>
+            <span class="text-white group-hover:underline flex items-center gap-1 font-medium">
+              View Reel <i data-lucide="chevron-right" class="w-3 h-3"></i>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 6: 18K Gold Clover -->
+      <div class="project-card group relative aspect-[9/16] rounded-2xl overflow-hidden bg-brand-card border border-white/[0.08] hover:border-white/25 active:border-white/40 transition-all duration-300 shadow-lg cursor-pointer"
+           data-slug="18k-gold-clover"
+           data-index="5"
+           data-category="ugc"
+           data-title="18K GOLD CLOVER"
+           data-tagline="Influencer Aesthetic UGC"
+           data-desc="Organic influencer-style selfie UGC reel highlighting golden specular luster, micro-pave diamonds, and genuine emotional resonance."
+           data-src="857961927_1790410074721807 (1).mp4"
+           data-fallback-src="857961927_1790410074721807 (1)_2.mp4"
+           data-alt-src="1000017199.mp4"
+           data-tags="Organic Selfie, Specular Shimmer, TikTok Native, ROAS Engine"
+           data-metrics="5.2x Blended ROAS">
+        
+        <video class="smart-grid-video absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" 
+               autoplay loop muted playsinline webkit-playsinline preload="auto">
+          <source src="857961927_1790410074721807 (1).mp4" type="video/mp4" />
+          <source src="857961927_1790410074721807 (1)_2.mp4" type="video/mp4" />
+          <source src="1000017199.mp4" type="video/mp4" />
+        </video>
+
+        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-black/40 pointer-events-none"></div>
+
+        <div class="absolute top-3 inset-x-3 sm:top-4 sm:inset-x-4 flex items-center justify-between pointer-events-none z-10">
+          <span class="px-2.5 py-1 rounded-full text-[10px] uppercase font-bold tracking-widest bg-black/70 backdrop-blur-md border border-white/10 text-white/90">
+            Performance UGC
+          </span>
+          <span class="px-2.5 py-1 rounded-full text-[10px] font-mono bg-white/10 backdrop-blur-md text-white/80 flex items-center gap-1">
+            <i data-lucide="play" class="w-2.5 h-2.5 fill-current"></i> 0:08
+          </span>
+        </div>
+
+        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 pointer-events-none">
+          <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-white/90 backdrop-blur-md text-black flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform duration-300">
+            <i data-lucide="play" class="w-5 h-5 sm:w-6 sm:h-6 fill-current ml-0.5"></i>
+          </div>
+        </div>
+
+        <div class="absolute bottom-3 inset-x-3 sm:bottom-4 sm:inset-x-4 p-3.5 sm:p-4 rounded-xl bg-black/70 backdrop-blur-md border border-white/10 pointer-events-none z-10">
+          <div class="text-[10px] sm:text-[11px] uppercase tracking-wider text-gray-400 font-medium">Fine Jewelry Direct</div>
+          <div class="font-syne font-bold text-base sm:text-lg text-white mt-0.5">18K GOLD CLOVER</div>
+          <p class="text-xs text-gray-300 mt-1 line-clamp-2 leading-relaxed">
+            Organic influencer-style selfie UGC reel highlighting golden luster and fine jewelry detailing.
+          </p>
+          <div class="mt-2.5 flex items-center justify-between text-[10px] sm:text-[11px] pt-2 border-t border-white/10 text-gray-400">
+            <span class="flex items-center gap-1 text-white/80">
+              <i data-lucide="trending-up" class="w-3 h-3 text-emerald-400"></i> 5.2x Blended ROAS
+            </span>
+            <span class="text-white group-hover:underline flex items-center gap-1 font-medium">
+              View Reel <i data-lucide="chevron-right" class="w-3 h-3"></i>
+            </span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Interactive Behind-The-Scenes CGI Comparison Slider Section -->
+  <section id="breakdown" class="py-16 sm:py-24 px-4 sm:px-6 max-w-6xl mx-auto scroll-mt-20 sm:scroll-mt-24 border-t border-white/[0.07]">
+    <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/[0.02] text-xs font-semibold uppercase tracking-[0.2em] text-gray-400 mb-3 sm:mb-4">
+        <i data-lucide="split" class="w-3.5 h-3.5 text-emerald-400"></i>
+        Proof of Craft & Authenticity
+      </div>
+      <h2 class="font-syne font-bold text-2xl sm:text-4xl md:text-5xl text-white tracking-tight">
+        Raw 3D Wireframe to 4K Broadcast
+      </h2>
+      <p class="text-gray-400 text-xs sm:text-base mt-2.5 sm:mt-3 leading-relaxed px-2">
+        Slide with your finger or mouse below to examine how our virtual artists reconstruct CAD topology, apply ray-traced subsurface scattering, and engineer cinematic lighting.
+      </p>
+    </div>
+
+    <!-- The Dual-Layer Interactive Comparison Container -->
+    <div class="relative rounded-2xl sm:rounded-3xl overflow-hidden border border-white/15 bg-brand-surface shadow-2xl comparison-container aspect-[4/3] sm:aspect-[16/9] md:aspect-[21/9] w-full" id="sliderContainer">
+      
+      <!-- Layer A: Background (Final 4K ACEScg Render with Volumetric Light) -->
+      <div class="absolute inset-0 w-full h-full bg-[#0a0a0a] flex items-center justify-center overflow-hidden">
+        <svg class="w-full h-full object-cover" viewBox="0 0 1000 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="smokeGlow" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#ffffff" stop-opacity="0.14"/>
+              <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+            </radialGradient>
+            <linearGradient id="glassGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#2e2e33"/>
+              <stop offset="40%" stop-color="#141416"/>
+              <stop offset="70%" stop-color="#080809"/>
+              <stop offset="100%" stop-color="#242428"/>
+            </linearGradient>
+            <linearGradient id="specularRim" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#ffffff" stop-opacity="0.95"/>
+              <stop offset="30%" stop-color="#ffffff" stop-opacity="0.2"/>
+              <stop offset="100%" stop-color="#ffffff" stop-opacity="0.85"/>
+            </linearGradient>
+          </defs>
+
+          <rect width="1000" height="500" fill="#09090b"/>
+          <circle cx="500" cy="220" r="320" fill="url(#smokeGlow)" />
+          
+          <ellipse cx="500" cy="430" rx="380" ry="40" fill="#141416" />
+          <path d="M120 430 L880 430 L800 480 L200 480 Z" fill="#0d0d0f" opacity="0.8"/>
+
+          <rect x="420" y="150" width="160" height="230" rx="16" fill="url(#glassGrad)" stroke="#3a3a40" stroke-width="2"/>
+          <rect x="432" y="170" width="136" height="195" rx="8" fill="#040405"/>
+          
+          <line x1="426" y1="160" x2="426" y2="370" stroke="url(#specularRim)" stroke-width="3" stroke-linecap="round"/>
+          <line x1="574" y1="160" x2="574" y2="370" stroke="url(#specularRim)" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+
+          <rect x="444" y="210" width="112" height="110" rx="4" fill="#fafafa"/>
+          <text x="500" y="255" text-anchor="middle" font-family="Syne, sans-serif" font-weight="800" font-size="14" fill="#000000" letter-spacing="2">NOIRÉ</text>
+          <text x="500" y="275" text-anchor="middle" font-family="Syne, sans-serif" font-weight="600" font-size="10" fill="#333333" letter-spacing="3">ÉCLIPSE</text>
+          <text x="500" y="300" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="7" fill="#666666" letter-spacing="1">EAU DE PARFUM</text>
+
+          <rect x="460" y="90" width="80" height="60" rx="6" fill="#18181b" stroke="#333" stroke-width="1.5"/>
+          <rect x="475" y="80" width="50" height="10" rx="2" fill="#27272a"/>
+
+          <path d="M380 320 Q 320 220 400 130 T 480 50" stroke="#ffffff" stroke-width="14" stroke-linecap="round" opacity="0.08"/>
+          <path d="M620 340 Q 690 240 600 120 T 540 40" stroke="#ffffff" stroke-width="18" stroke-linecap="round" opacity="0.08"/>
+        </svg>
+
+        <div class="absolute bottom-3 right-3 sm:bottom-6 sm:right-6 px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-full bg-emerald-500/20 backdrop-blur-md border border-emerald-500/40 text-emerald-300 text-[9px] sm:text-xs font-mono font-semibold tracking-wider flex items-center gap-1.5 z-10 pointer-events-none">
+          <span class="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          FINAL 4K RENDER
+        </div>
+      </div>
+
+      <!-- Layer B: Foreground (Raw 3D Wireframe Mesh) -->
+      <div id="sliderForegroundLayer" class="absolute inset-0 w-full h-full bg-[#18181b] overflow-hidden" style="clip-path: inset(0 50% 0 0);">
+        <svg class="w-full h-full object-cover" viewBox="0 0 1000 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="1000" height="500" fill="#1b1c20"/>
+
+          <g stroke="#3a3d45" stroke-width="1" opacity="0.6">
+            <line x1="100" y1="460" x2="900" y2="460" />
+            <line x1="180" y1="420" x2="820" y2="420" />
+            <line x1="250" y1="390" x2="750" y2="390" />
+            <line x1="300" y1="370" x2="700" y2="370" />
+            <line x1="500" y1="320" x2="100" y2="490" />
+            <line x1="500" y1="320" x2="250" y2="490" />
+            <line x1="500" y1="320" x2="400" y2="490" />
+            <line x1="500" y1="320" x2="600" y2="490" />
+            <line x1="500" y1="320" x2="750" y2="490" />
+            <line x1="500" y1="320" x2="900" y2="490" />
+          </g>
+
+          <rect x="420" y="150" width="160" height="230" rx="16" fill="#2d3039" stroke="#00f0ff" stroke-width="1.5" opacity="0.9"/>
+          
+          <g stroke="#00f0ff" stroke-width="0.8" opacity="0.5">
+            <line x1="420" y1="180" x2="580" y2="180" />
+            <line x1="420" y1="210" x2="580" y2="210" />
+            <line x1="420" y1="240" x2="580" y2="240" />
+            <line x1="420" y1="270" x2="580" y2="270" />
+            <line x1="420" y1="300" x2="580" y2="300" />
+            <line x1="420" y1="330" x2="580" y2="330" />
+            <line x1="420" y1="360" x2="580" y2="360" />
+
+            <line x1="440" y1="150" x2="440" y2="380" />
+            <line x1="460" y1="150" x2="460" y2="380" />
+            <line x1="480" y1="150" x2="480" y2="380" />
+            <line x1="500" y1="150" x2="500" y2="380" />
+            <line x1="520" y1="150" x2="520" y2="380" />
+            <line x1="540" y1="150" x2="540" y2="380" />
+            <line x1="560" y1="150" x2="560" y2="380" />
+            
+            <line x1="420" y1="150" x2="460" y2="210" />
+            <line x1="460" y1="150" x2="500" y2="210" />
+            <line x1="500" y1="150" x2="540" y2="210" />
+            <line x1="540" y1="150" x2="580" y2="210" />
+          </g>
+
+          <rect x="460" y="90" width="80" height="60" rx="6" fill="#383c48" stroke="#00f0ff" stroke-width="1.5"/>
+          <line x1="460" y1="110" x2="540" y2="110" stroke="#00f0ff" stroke-width="0.8" opacity="0.6"/>
+          <line x1="460" y1="130" x2="540" y2="130" stroke="#00f0ff" stroke-width="0.8" opacity="0.6"/>
+
+          <g transform="translate(500, 265)">
+            <line x1="0" y1="0" x2="50" y2="0" stroke="#ff3b30" stroke-width="2.5"/>
+            <text x="56" y="4" font-family="monospace" font-size="10" fill="#ff3b30">X</text>
+            <line x1="0" y1="0" x2="0" y2="-50" stroke="#34c759" stroke-width="2.5"/>
+            <text x="4" y="-54" font-family="monospace" font-size="10" fill="#34c759">Y</text>
+            <line x1="0" y1="0" x2="-35" y2="30" stroke="#007aff" stroke-width="2.5"/>
+            <text x="-48" y="38" font-family="monospace" font-size="10" fill="#007aff">Z</text>
+          </g>
+        </svg>
+
+        <div class="absolute bottom-3 left-3 sm:bottom-6 sm:left-6 px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-full bg-cyan-500/20 backdrop-blur-md border border-cyan-500/40 text-cyan-300 text-[9px] sm:text-xs font-mono font-semibold tracking-wider flex items-center gap-1.5 z-10 pointer-events-none">
+          <i data-lucide="box" class="w-3 h-3 sm:w-3.5 sm:h-3.5"></i>
+          RAW 3D CLAY MESH
+        </div>
+      </div>
+
+      <!-- Draggable Splitter Handle -->
+      <div id="sliderHandle" class="comparison-slider-handle" style="left: 50%;">
+        <div class="w-8 h-8 sm:w-10 sm:h-10 -ml-4 sm:-ml-5 -mt-4 sm:-mt-5 absolute top-1/2 rounded-full bg-white text-black shadow-2xl flex items-center justify-center border-2 border-neutral-900 group-hover:scale-110 active:scale-95 transition-transform">
+          <i data-lucide="chevrons-left-right" class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-black"></i>
+        </div>
+      </div>
+    </div>
+
+    <!-- Presets Ribbon -->
+    <div class="mt-4 sm:mt-6 flex flex-wrap items-center justify-between gap-3 text-xs">
+      <div class="flex items-center gap-2 overflow-x-auto max-w-full pb-1">
+        <span class="text-gray-400 text-[11px] uppercase tracking-wider shrink-0">Presets:</span>
+        <button id="setClayViewBtn" class="px-2.5 sm:px-3 py-1.5 rounded-lg bg-brand-surface border border-white/10 hover:border-white/30 text-gray-300 hover:text-white transition-colors whitespace-nowrap text-[11px] sm:text-xs">
+          Wireframe
+        </button>
+        <button id="setSplitViewBtn" class="px-2.5 sm:px-3 py-1.5 rounded-lg bg-white/10 border border-white/25 text-white font-semibold transition-colors whitespace-nowrap text-[11px] sm:text-xs">
+          50/50 Split
+        </button>
+        <button id="setFinalViewBtn" class="px-2.5 sm:px-3 py-1.5 rounded-lg bg-brand-surface border border-white/10 hover:border-white/30 text-gray-300 hover:text-white transition-colors whitespace-nowrap text-[11px] sm:text-xs">
+          4K Master
+        </button>
+      </div>
+
+      <div class="flex items-center gap-3 text-gray-400 font-mono text-[10px] sm:text-[11px]">
+        <span>ACEScg Colorspace</span>
+        <span>•</span>
+        <span>Subsurface GGX</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Proprietary Pipeline Section (4 Steps) -->
+  <section id="pipeline" class="py-16 sm:py-24 px-4 sm:px-6 max-w-7xl mx-auto scroll-mt-20 sm:scroll-mt-24 border-t border-white/[0.07]">
+    <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/[0.02] text-xs font-semibold uppercase tracking-[0.2em] text-gray-400 mb-3 sm:mb-4">
+        <i data-lucide="cpu" class="w-3.5 h-3.5"></i>
+        Architectural Advantage
+      </div>
+      <h2 class="font-syne font-bold text-2xl sm:text-4xl md:text-5xl text-white tracking-tight">
+        The Advora Virtual Production Engine
+      </h2>
+      <p class="text-gray-400 text-xs sm:text-base mt-3 font-sans leading-relaxed px-2">
+        We replaced traditional production bureaucracy with our high-cadence 4-stage pipeline that pairs commercial directors with algorithmic scene synthesizers.
+      </p>
+    </div>
+
+    <!-- 4 Pipeline Steps Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+      <div class="group p-5 sm:p-6 rounded-2xl bg-brand-surface border border-white/[0.08] hover:border-white/20 transition-all duration-300 relative flex flex-col justify-between">
+        <div class="absolute -top-3 right-5 sm:right-6 px-2.5 sm:px-3 py-0.5 rounded-full bg-white text-black font-syne font-bold text-xs tracking-wider">
+          01
+        </div>
+        <div>
+          <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white mb-4 sm:mb-5 group-hover:scale-110 transition-transform">
+            <i data-lucide="crosshair" class="w-4 h-4 sm:w-5 sm:h-5 text-gray-200"></i>
+          </div>
+          <h3 class="font-syne font-bold text-base sm:text-lg text-white mb-1.5 sm:mb-2">Hook Engineering</h3>
+          <p class="text-xs text-gray-400 leading-relaxed">
+            Data-backed scripting and visual hook analysis formulated from top-performing direct-response retention curves across TikTok and Meta.
+          </p>
+        </div>
+        <div class="mt-5 pt-3.5 border-t border-white/[0.06] text-[11px] text-gray-400 flex items-center justify-between">
+          <span>Deliverable:</span>
+          <span class="text-white font-mono">Hook Storyboard</span>
+        </div>
+      </div>
+
+      <div class="group p-5 sm:p-6 rounded-2xl bg-brand-surface border border-white/[0.08] hover:border-white/20 transition-all duration-300 relative flex flex-col justify-between">
+        <div class="absolute -top-3 right-5 sm:right-6 px-2.5 sm:px-3 py-0.5 rounded-full bg-white text-black font-syne font-bold text-xs tracking-wider">
+          02
+        </div>
+        <div>
+          <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white mb-4 sm:mb-5 group-hover:scale-110 transition-transform">
+            <i data-lucide="box" class="w-4 h-4 sm:w-5 sm:h-5 text-gray-200"></i>
+          </div>
+          <h3 class="font-syne font-bold text-base sm:text-lg text-white mb-1.5 sm:mb-2">Generative CGI Modeling</h3>
+          <p class="text-xs text-gray-400 leading-relaxed">
+            Sub-millimeter photorealistic geometry synthesis. We recreate your product shaders, glass refractions, liquid viscosity, and micro-textures.
+          </p>
+        </div>
+        <div class="mt-5 pt-3.5 border-t border-white/[0.06] text-[11px] text-gray-400 flex items-center justify-between">
+          <span>Precision:</span>
+          <span class="text-white font-mono">Sub-Millimeter</span>
+        </div>
+      </div>
+
+      <div class="group p-5 sm:p-6 rounded-2xl bg-brand-surface border border-white/[0.08] hover:border-white/20 transition-all duration-300 relative flex flex-col justify-between">
+        <div class="absolute -top-3 right-5 sm:right-6 px-2.5 sm:px-3 py-0.5 rounded-full bg-white text-black font-syne font-bold text-xs tracking-wider">
+          03
+        </div>
+        <div>
+          <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white mb-4 sm:mb-5 group-hover:scale-110 transition-transform">
+            <i data-lucide="video" class="w-4 h-4 sm:w-5 sm:h-5 text-gray-200"></i>
+          </div>
+          <h3 class="font-syne font-bold text-base sm:text-lg text-white mb-1.5 sm:mb-2">Virtual Camera Motion</h3>
+          <p class="text-xs text-gray-400 leading-relaxed">
+            Hollywood-caliber lens physics (anamorphic streak, shallow optical depth, organic handheld sway) impossible to replicate with rigid physical rigs.
+          </p>
+        </div>
+        <div class="mt-5 pt-3.5 border-t border-white/[0.06] text-[11px] text-gray-400 flex items-center justify-between">
+          <span>Optics:</span>
+          <span class="text-white font-mono">Cine Anamorphic</span>
+        </div>
+      </div>
+
+      <div class="group p-5 sm:p-6 rounded-2xl bg-brand-surface border border-white/[0.08] hover:border-white/20 transition-all duration-300 relative flex flex-col justify-between">
+        <div class="absolute -top-3 right-5 sm:right-6 px-2.5 sm:px-3 py-0.5 rounded-full bg-white text-black font-syne font-bold text-xs tracking-wider">
+          04
+        </div>
+        <div>
+          <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white mb-4 sm:mb-5 group-hover:scale-110 transition-transform">
+            <i data-lucide="sliders" class="w-4 h-4 sm:w-5 sm:h-5 text-gray-200"></i>
+          </div>
+          <h3 class="font-syne font-bold text-base sm:text-lg text-white mb-1.5 sm:mb-2">Mastering & Sound</h3>
+          <p class="text-xs text-gray-400 leading-relaxed">
+            DaVinci ACES color grading paired with binaural foley audio design. Delivered in ready-to-scale 4K 9:16 vertical and 16:9 widescreen formats.
+          </p>
+        </div>
+        <div class="mt-5 pt-3.5 border-t border-white/[0.06] text-[11px] text-gray-400 flex items-center justify-between">
+          <span>Turnaround:</span>
+          <span class="text-white font-mono">48-72 Hours</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Scope & Budget Calculator Section -->
+  <section id="calculator" class="py-16 sm:py-24 px-4 sm:px-6 max-w-6xl mx-auto scroll-mt-20 sm:scroll-mt-24 border-t border-white/[0.07]">
+    <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/[0.02] text-xs font-semibold uppercase tracking-[0.2em] text-gray-400 mb-3 sm:mb-4">
+        <i data-lucide="calculator" class="w-3.5 h-3.5 text-emerald-400"></i>
+        Instant Scope Estimator
+      </div>
+      <h2 class="font-syne font-bold text-2xl sm:text-4xl md:text-5xl text-white tracking-tight">
+        Calculate Your Production Savings
+      </h2>
+      <p class="text-gray-400 text-xs sm:text-base mt-2.5 sm:mt-3 leading-relaxed px-2">
+        Select your SKU volume and deliverable type to benchmark Advora AI’s turnaround and budget against traditional agency soundstage costs.
+      </p>
+    </div>
+
+    <!-- Calculator Card -->
+    <div class="p-5 sm:p-10 rounded-2xl sm:rounded-3xl bg-brand-surface border border-white/10 shadow-2xl grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-center">
+      
+      <!-- Controls -->
+      <div class="lg:col-span-7 space-y-5 sm:space-y-6">
+        <div>
+          <div class="flex items-center justify-between mb-2">
+            <label class="text-[11px] sm:text-xs uppercase tracking-wider font-semibold text-gray-300">
+              1. Number of Hero SKUs / Products
+            </label>
+            <span id="skuCountDisplay" class="font-mono text-xs sm:text-sm font-bold text-white bg-white/10 px-2.5 py-0.5 rounded-md">
+              1 Hero SKU
+            </span>
+          </div>
+          <div class="grid grid-cols-3 gap-2">
+            <button type="button" data-sku="1" class="sku-selector-btn active-calc-opt py-2.5 sm:py-3 px-2 sm:px-4 rounded-xl text-[11px] sm:text-xs font-semibold border border-white/30 bg-white text-black text-center transition-all">
+              1 SKU
+            </button>
+            <button type="button" data-sku="3" class="sku-selector-btn py-2.5 sm:py-3 px-2 sm:px-4 rounded-xl text-[11px] sm:text-xs font-semibold border border-white/10 bg-black/40 text-gray-300 hover:text-white hover:border-white/20 text-center transition-all">
+              3 Pack
+            </button>
+            <button type="button" data-sku="5" class="sku-selector-btn py-2.5 sm:py-3 px-2 sm:px-4 rounded-xl text-[11px] sm:text-xs font-semibold border border-white/10 bg-black/40 text-gray-300 hover:text-white hover:border-white/20 text-center transition-all">
+              5+ Full
+            </button>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-[11px] sm:text-xs uppercase tracking-wider font-semibold text-gray-300 mb-2">
+            2. Deliverable Package Stack
+          </label>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 sm:gap-3">
+            <button type="button" data-pack="hooks" class="pack-selector-btn active-calc-opt p-3 sm:p-3.5 rounded-xl border border-white/30 bg-white text-black text-left transition-all">
+              <div class="font-syne font-bold text-xs uppercase">Viral Hooks Pack</div>
+              <div class="text-[10px] sm:text-[11px] opacity-80 mt-0.5">3x 9:16 Scroll-Stoppers</div>
+            </button>
+            <button type="button" data-pack="spot" class="pack-selector-btn p-3 sm:p-3.5 rounded-xl border border-white/10 bg-black/40 text-gray-300 hover:text-white hover:border-white/20 text-left transition-all">
+              <div class="font-syne font-bold text-xs uppercase">Hero 3D Spot</div>
+              <div class="text-[10px] sm:text-[11px] text-gray-400 mt-0.5">30s Broadcast Film</div>
+            </button>
+            <button type="button" data-pack="full" class="pack-selector-btn p-3 sm:p-3.5 rounded-xl border border-white/10 bg-black/40 text-gray-300 hover:text-white hover:border-white/20 text-left transition-all">
+              <div class="font-syne font-bold text-xs uppercase">Omni-Channel Suite</div>
+              <div class="text-[10px] sm:text-[11px] text-gray-400 mt-0.5">Hero spot + 6 hooks</div>
+            </button>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-[11px] sm:text-xs uppercase tracking-wider font-semibold text-gray-300 mb-2">
+            3. Turnaround Velocity
+          </label>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3">
+            <button type="button" data-speed="standard" class="speed-selector-btn active-calc-opt py-2.5 sm:py-3 px-3 sm:px-4 rounded-xl text-xs font-semibold border border-white/30 bg-white text-black text-center transition-all flex items-center justify-center gap-2">
+              <i data-lucide="clock" class="w-3.5 h-3.5"></i> Standard (72 Hours)
+            </button>
+            <button type="button" data-speed="express" class="speed-selector-btn py-2.5 sm:py-3 px-3 sm:px-4 rounded-xl text-xs font-semibold border border-white/10 bg-black/40 text-gray-300 hover:text-white hover:border-white/20 text-center transition-all flex items-center justify-center gap-2">
+              <i data-lucide="zap" class="w-3.5 h-3.5 text-amber-300"></i> Express (24-48 Hours)
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Live Savings Benchmark Card -->
+      <div class="lg:col-span-5 p-5 sm:p-7 rounded-2xl bg-black/80 border border-white/15 relative overflow-hidden flex flex-col justify-between">
+        <div class="absolute -top-12 -right-12 w-44 h-44 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div>
+          <div class="flex items-center justify-between pb-3 border-b border-white/10 text-xs">
+            <span class="text-gray-400 uppercase tracking-wider text-[11px]">Advora Estimate</span>
+            <span class="font-mono text-emerald-400 font-bold flex items-center gap-1 text-[11px]">
+              <i data-lucide="shield-check" class="w-3.5 h-3.5"></i> Fixed Price
+            </span>
+          </div>
+
+          <div class="my-4 sm:my-5">
+            <div class="text-[11px] text-gray-400 uppercase tracking-wider font-medium">Estimated Studio Investment</div>
+            <div id="advoraPriceDisplay" class="font-syne font-extrabold text-3xl sm:text-5xl text-white tracking-tight mt-1">
+              $2,800
+            </div>
+            <div class="text-xs text-gray-400 mt-1 flex items-center gap-1.5">
+              <span>Delivery Time:</span>
+              <span id="turnaroundDisplay" class="text-white font-mono font-semibold">72 Hours</span>
+            </div>
+          </div>
+
+          <div class="p-3 sm:p-3.5 rounded-xl bg-white/[0.03] border border-white/10 space-y-2 mb-5 sm:mb-6 text-xs">
+            <div class="flex items-center justify-between text-gray-400">
+              <span>Traditional Shoot:</span>
+              <span id="tradPriceDisplay" class="line-through text-red-400 font-mono font-medium">$22,000+</span>
+            </div>
+            <div class="flex items-center justify-between text-gray-400">
+              <span>Traditional Lead Time:</span>
+              <span class="text-red-400 font-mono">4-6 Weeks</span>
+            </div>
+            <div class="pt-2 border-t border-white/10 flex items-center justify-between font-semibold text-emerald-300">
+              <span>Total Capital Saved:</span>
+              <span id="savingsDisplay" class="font-mono text-xs sm:text-sm text-emerald-400 font-bold">$19,200 (87%)</span>
+            </div>
+          </div>
+        </div>
+
+        <button id="lockEstimateBtn" class="w-full py-3 sm:py-3.5 px-4 rounded-xl bg-white text-black font-syne font-bold text-xs uppercase tracking-wider hover:bg-neutral-200 active:scale-95 transition-all flex items-center justify-center gap-2 group">
+          <span>Lock In This Estimate & Apply</span>
+          <i data-lucide="arrow-down-right" class="w-4 h-4 group-hover:translate-x-0.5 group-hover:translate-y-0.5 transition-transform"></i>
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Shoot Comparison Section -->
+  <section id="comparison" class="py-16 sm:py-24 px-4 sm:px-6 max-w-6xl mx-auto scroll-mt-20 sm:scroll-mt-24 border-t border-white/[0.07]">
+    <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-16">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/[0.02] text-xs font-semibold uppercase tracking-[0.2em] text-gray-400 mb-3 sm:mb-4">
+        <i data-lucide="scale" class="w-3.5 h-3.5"></i>
+        Economics & Efficiency
+      </div>
+      <h2 class="font-syne font-bold text-2xl sm:text-4xl md:text-5xl text-white tracking-tight">
+        Traditional Shoot vs. Advora AI
+      </h2>
+      <p class="text-gray-400 text-xs sm:text-base mt-3 font-sans leading-relaxed px-2">
+        Why global brands and ambitious D2C labels are transitioning away from physical soundstages.
+      </p>
+
+      <div class="flex md:hidden items-center justify-center gap-2 mt-4 text-[11px] text-gray-400 font-mono">
+        <i data-lucide="arrow-left-right" class="w-3.5 h-3.5 text-white animate-pulse"></i>
+        <span>Swipe horizontally to view comparison</span>
+      </div>
+    </div>
+
+    <!-- Comparison Table Card -->
+    <div class="rounded-2xl sm:rounded-3xl bg-brand-surface border border-white/[0.08] overflow-hidden shadow-2xl">
+      <div class="overflow-x-auto">
+        <table class="w-full text-left border-collapse min-w-[580px] sm:min-w-[640px]">
+          <thead>
+            <tr class="border-b border-white/[0.08] bg-white/[0.02]">
+              <th class="py-4 sm:py-5 px-4 sm:px-6 font-syne text-xs uppercase tracking-wider text-gray-400 font-semibold w-1/3">
+                Production Dimension
+              </th>
+              <th class="py-4 sm:py-5 px-4 sm:px-6 font-syne text-xs uppercase tracking-wider text-gray-400 font-semibold w-1/3">
+                Traditional Agency Shoot
+              </th>
+              <th class="py-4 sm:py-5 px-4 sm:px-6 font-syne text-xs uppercase tracking-wider text-white font-bold w-1/3 bg-white/[0.05] border-l border-white/[0.08]">
+                <div class="flex items-center gap-2">
+                  <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                  Advora AI Studio
+                </div>
+              </th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-white/[0.06] text-xs sm:text-sm">
+            <tr class="hover:bg-white/[0.01] transition-colors">
+              <td class="py-3.5 sm:py-4 px-4 sm:px-6 font-medium text-gray-300">
+                Turnaround Time
+              </td>
+              <td class="py-3.5 sm:py-4 px-4 sm:px-6 text-gray-400 flex items-center gap-2">
+                <i data-lucide="x" class="w-4 h-4 text-red-400 shrink-0"></i>
+                4 to 8 Weeks (Logistics delay)
+              </td>
+              <td class="py-3.5 sm:py-4 px-4 sm:px-6 text-white font-medium bg-white/[0.02] border-l border-white/[0.08]">
+                <div class="flex items-center gap-2 text-emerald-300">
+                  <i data-lucide="check" class="w-4 h-4 text-emerald-400 shrink-0"></i>
+                  48 to 72 Hours Guaranteed
+                </div>
+              </td>
+            </tr>
+
+            <tr class="hover:bg-white/[0.01] transition-colors">
+              <td class="py-3.5 sm:py-4 px-4 sm:px-6 font-medium text-gray-300">
+                Cost per Commercial
+              </td>
+              <td class="py-3.5 sm:py-4 px-4 sm:px-6 text-gray-400 flex items-center gap-2">
+                <i data-lucide="x" class="w-4 h-4 text-red-400 shrink-0"></i>
+                $20,000 – $65,000+ per spot
+              </td>
+              <td class="py-3.5 sm:py-4 px-4 sm:px-6 text-white font-medium bg-white/[0.02] border-l border-white/[0.08]">
+                <div class="flex items-center gap-2 text-emerald-300">
+                  <i data-lucide="check" class="w-4 h-4 text-emerald-400 shrink-0"></i>
+                  70% to 85% Less Budget Required
+                </div>
+              </td>
+            </tr>
+
+            <tr class="hover:bg-white/[0.01] transition-colors">
+              <td class="py-3.5 sm:py-4 px-4 sm:px-6 font-medium text-gray-300">
+                Physical Inventory Risk
+              </td>
+              <td class="py-3.5 sm:py-4 px-4 sm:px-6 text-gray-400 flex items-center gap-2">
+                <i data-lucide="x" class="w-4 h-4 text-red-400 shrink-0"></i>
+                Dozens of units shipped or damaged
+              </td>
+              <td class="py-3.5 sm:py-4 px-4 sm:px-6 text-white font-medium bg-white/[0.02] border-l border-white/[0.08]">
+                <div class="flex items-center gap-2 text-emerald-300">
+                  <i data-lucide="check" class="w-4 h-4 text-emerald-400 shrink-0"></i>
+                  Zero Physical Wear (CAD/Photo Twin)
+                </div>
+              </td>
+            </tr>
+
+            <tr class="hover:bg-white/[0.01] transition-colors">
+              <td class="py-3.5 sm:py-4 px-4 sm:px-6 font-medium text-gray-300">
+                A/B Hook Iterations
+              </td>
+              <td class="py-3.5 sm:py-4 px-4 sm:px-6 text-gray-400 flex items-center gap-2">
+                <i data-lucide="x" class="w-4 h-4 text-red-400 shrink-0"></i>
+                Prohibitive ($8k+ re-shoot crew fee)
+              </td>
+              <td class="py-3.5 sm:py-4 px-4 sm:px-6 text-white font-medium bg-white/[0.02] border-l border-white/[0.08]">
+                <div class="flex items-center gap-2 text-emerald-300">
+                  <i data-lucide="check" class="w-4 h-4 text-emerald-400 shrink-0"></i>
+                  Infinite Lighting, Angle & Hook Tweaks
+                </div>
+              </td>
+            </tr>
+
+            <tr class="hover:bg-white/[0.01] transition-colors">
+              <td class="py-3.5 sm:py-4 px-4 sm:px-6 font-medium text-gray-300">
+                Multi-Platform Formats
+              </td>
+              <td class="py-3.5 sm:py-4 px-4 sm:px-6 text-gray-400 flex items-center gap-2">
+                <i data-lucide="x" class="w-4 h-4 text-red-400 shrink-0"></i>
+                Awkward post-crops losing framing
+              </td>
+              <td class="py-3.5 sm:py-4 px-4 sm:px-6 text-white font-medium bg-white/[0.02] border-l border-white/[0.08]">
+                <div class="flex items-center gap-2 text-emerald-300">
+                  <i data-lucide="check" class="w-4 h-4 text-emerald-400 shrink-0"></i>
+                  Native Framed 9:16, 16:9, and 1:1 Masters
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section id="faq" class="py-16 sm:py-24 px-4 sm:px-6 max-w-4xl mx-auto scroll-mt-20 sm:scroll-mt-24 border-t border-white/[0.07]">
+    <div class="text-center max-w-2xl mx-auto mb-10 sm:mb-14">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/[0.02] text-xs font-semibold uppercase tracking-[0.2em] text-gray-400 mb-3 sm:mb-4">
+        <i data-lucide="help-circle" class="w-3.5 h-3.5 text-gray-400"></i>
+        Frequently Addressed Questions
+      </div>
+      <h2 class="font-syne font-bold text-2xl sm:text-4xl md:text-5xl text-white tracking-tight">
+        Clear Terms. Zero Ambiguity.
+      </h2>
+      <p class="text-gray-400 text-xs sm:text-base mt-2.5 sm:mt-3 leading-relaxed px-2">
+        Everything you need to know about sample requirements, licensing ownership, revision rounds, and turnaround speeds.
+      </p>
+    </div>
+
+    <!-- Accordion List -->
+    <div class="space-y-3 sm:space-y-4" id="faqAccordion">
+      <div class="faq-item rounded-xl sm:rounded-2xl bg-brand-surface border border-white/[0.08] overflow-hidden transition-all duration-300">
+        <button class="faq-question w-full p-4 sm:p-6 text-left flex items-center justify-between gap-3 text-white font-syne font-bold text-sm sm:text-base hover:text-white/90">
+          <span>Do we need to ship physical product samples to your studio?</span>
+          <i data-lucide="chevron-down" class="w-4 h-4 sm:w-5 sm:h-5 text-gray-400 transition-transform duration-300 faq-icon shrink-0"></i>
+        </button>
+        <div class="faq-answer px-4 sm:px-6 pb-4 sm:pb-6 text-xs sm:text-sm text-gray-400 leading-relaxed hidden">
+          In 90% of productions, <strong class="text-white">no physical shipping is required</strong>. If you possess CAD, STEP, or packaging label vector files, our artists ingest them directly. Alternatively, you can capture 6 simple smartphone photos of your bottle/packaging against plain lighting, and our photogrammetry engine synthesizes a sub-millimeter 3D digital twin.
+        </div>
+      </div>
+
+      <div class="faq-item rounded-xl sm:rounded-2xl bg-brand-surface border border-white/[0.08] overflow-hidden transition-all duration-300">
+        <button class="faq-question w-full p-4 sm:p-6 text-left flex items-center justify-between gap-3 text-white font-syne font-bold text-sm sm:text-base hover:text-white/90">
+          <span>Who owns the copyright and commercial licensing rights?</span>
+          <i data-lucide="chevron-down" class="w-4 h-4 sm:w-5 sm:h-5 text-gray-400 transition-transform duration-300 faq-icon shrink-0"></i>
+        </button>
+        <div class="faq-answer px-4 sm:px-6 pb-4 sm:pb-6 text-xs sm:text-sm text-gray-400 leading-relaxed hidden">
+          Upon final delivery, <strong class="text-white">you own 100% perpetual, unencumbered global commercial rights</strong>. You can run the videos freely across paid Meta ads, TikTok Spark, YouTube Pre-Roll, television broadcast, Amazon Storefronts, and offline DOOH billboards without ongoing royalties or talent residuals.
+        </div>
+      </div>
+
+      <div class="faq-item rounded-xl sm:rounded-2xl bg-brand-surface border border-white/[0.08] overflow-hidden transition-all duration-300">
+        <button class="faq-question w-full p-4 sm:p-6 text-left flex items-center justify-between gap-3 text-white font-syne font-bold text-sm sm:text-base hover:text-white/90">
+          <span>How do revision cycles work if we want to change camera angles?</span>
+          <i data-lucide="chevron-down" class="w-4 h-4 sm:w-5 sm:h-5 text-gray-400 transition-transform duration-300 faq-icon shrink-0"></i>
+        </button>
+        <div class="faq-answer px-4 sm:px-6 pb-4 sm:pb-6 text-xs sm:text-sm text-gray-400 leading-relaxed hidden">
+          Every commercial package includes <strong class="text-white">2 rounds of rapid revisions</strong>. Because your product environment exists digitally, modifying lighting angles, pacing, camera movement, or hook text does not require rescheduling actors or re-booking soundstages—tweaks are completed in just hours.
+        </div>
+      </div>
+
+      <div class="faq-item rounded-xl sm:rounded-2xl bg-brand-surface border border-white/[0.08] overflow-hidden transition-all duration-300">
+        <button class="faq-question w-full p-4 sm:p-6 text-left flex items-center justify-between gap-3 text-white font-syne font-bold text-sm sm:text-base hover:text-white/90">
+          <span>What deliverable formats and master resolutions do you deliver?</span>
+          <i data-lucide="chevron-down" class="w-4 h-4 sm:w-5 sm:h-5 text-gray-400 transition-transform duration-300 faq-icon shrink-0"></i>
+        </button>
+        <div class="faq-answer px-4 sm:px-6 pb-4 sm:pb-6 text-xs sm:text-sm text-gray-400 leading-relaxed hidden">
+          All masters are rendered in uncompressed <strong class="text-white">Apple ProRes 422HQ and web-optimized 4K H.265</strong>. We natively deliver 9:16 vertical (for TikTok & Reels), 16:9 widescreen (for YouTube & TV), and 1:1 square formats, complete with split audio stems.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pilot Ad Inquiry Form Section -->
+  <section id="contact" class="py-16 sm:py-24 px-4 sm:px-6 max-w-4xl mx-auto scroll-mt-20 sm:scroll-mt-24 border-t border-white/[0.07]">
+    <div class="text-center max-w-2xl mx-auto mb-10 sm:mb-12">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/[0.02] text-xs font-semibold uppercase tracking-[0.2em] text-gray-400 mb-3 sm:mb-4">
+        <i data-lucide="sparkle" class="w-3.5 h-3.5"></i>
+        Instant Availability
+      </div>
+      <h2 class="font-syne font-bold text-2xl sm:text-4xl md:text-5xl text-white tracking-tight">
+        Commission Your Pilot Ad
+      </h2>
+      <p class="text-gray-400 text-xs sm:text-base mt-2.5 sm:mt-3 leading-relaxed px-2">
+        Test our broadcast-fidelity pipeline on your hero SKU. Receive a full director's treatment and render timeline within 2 hours.
+      </p>
+    </div>
+
+    <!-- Inquiry Card -->
+    <div class="p-6 sm:p-10 rounded-2xl sm:rounded-3xl bg-brand-surface border border-white/[0.08] shadow-2xl relative">
+      <form id="pilotForm" class="space-y-5 sm:space-y-6">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+          <div>
+            <label class="block text-xs uppercase tracking-wider font-semibold text-gray-300 mb-2">
+              Full Name / Agency <span class="text-white">*</span>
+            </label>
+            <input type="text" required placeholder="Elena Rostova (Luxe Group)" 
+                   class="w-full px-4 py-3 rounded-xl bg-brand-black border border-white/10 text-white placeholder-gray-600 focus:outline-none focus:border-white/40 transition-colors text-xs sm:text-sm" />
+          </div>
+
+          <div>
+            <label class="block text-xs uppercase tracking-wider font-semibold text-gray-300 mb-2">
+              Work Email Address <span class="text-white">*</span>
+            </label>
+            <input type="email" required placeholder="elena@luxegroup.com" 
+                   class="w-full px-4 py-3 rounded-xl bg-brand-black border border-white/10 text-white placeholder-gray-600 focus:outline-none focus:border-white/40 transition-colors text-xs sm:text-sm" />
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+          <div>
+            <label class="block text-xs uppercase tracking-wider font-semibold text-gray-300 mb-2">
+              Product Category <span class="text-white">*</span>
+            </label>
+            <select required class="w-full px-4 py-3 rounded-xl bg-brand-black border border-white/10 text-white focus:outline-none focus:border-white/40 transition-colors text-xs sm:text-sm">
+              <option value="" disabled selected>Select Product Category</option>
+              <option value="luxury">Luxury Fragrance & Watches</option>
+              <option value="beauty">Skincare & Botanical Cosmetics</option>
+              <option value="tech">Consumer Electronics & Hardware</option>
+              <option value="food">Gourmet Food & Beverage</option>
+              <option value="jewelry">Fine Jewelry & Fashion D2C</option>
+              <option value="other">Other High-Growth SKU</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-xs uppercase tracking-wider font-semibold text-gray-300 mb-2">
+              Desired Commercial Deliverable <span class="text-white">*</span>
+            </label>
+            <select required class="w-full px-4 py-3 rounded-xl bg-brand-black border border-white/10 text-white focus:outline-none focus:border-white/40 transition-colors text-xs sm:text-sm">
+              <option value="" disabled selected>Select Primary Deliverable</option>
+              <option value="hero">Cinematic CGI Commercial (9:16 + 16:9)</option>
+              <option value="ugc">Viral Hook UGC Creative Pack (3 Variants)</option>
+              <option value="tabletop">Slow-Motion Macro Tabletop Reel</option>
+              <option value="full">Full Scale Brand Campaign Package</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs uppercase tracking-wider font-semibold text-gray-300 mb-2">
+            Project Vision & SKU Reference Links
+          </label>
+          <textarea rows="3" placeholder="Provide product URL, desired lighting mood, reference commercial, or target launch deadline..." 
+                    class="w-full px-4 py-3 rounded-xl bg-brand-black border border-white/10 text-white placeholder-gray-600 focus:outline-none focus:border-white/40 transition-colors text-xs sm:text-sm"></textarea>
+        </div>
+
+        <button type="submit" id="submitBtn" class="w-full py-3.5 sm:py-4 rounded-xl bg-white text-black font-syne font-bold text-xs sm:text-sm uppercase tracking-wider hover:bg-neutral-200 active:scale-95 transition-all duration-200 flex items-center justify-center gap-2 group">
+          <span>Submit Pilot Request</span>
+          <i data-lucide="send" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+        </button>
+
+        <p class="text-center text-[11px] text-gray-400">
+          Strict NDA protected. We provide a full creative pitch & pricing within 2 hours.
+        </p>
+      </form>
+
+      <!-- Form Submission Success Overlay -->
+      <div id="formSuccessMessage" class="absolute inset-0 bg-brand-surface/95 backdrop-blur-md rounded-2xl sm:rounded-3xl flex flex-col items-center justify-center p-6 sm:p-8 text-center opacity-0 pointer-events-none transition-opacity duration-300">
+        <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 mb-3 sm:mb-4">
+          <i data-lucide="check-circle" class="w-7 h-7 sm:w-8 sm:h-8"></i>
+        </div>
+        <h3 class="font-syne font-bold text-xl sm:text-2xl text-white mb-2">Treatment Brief Dispatched</h3>
+        <p class="text-xs sm:text-sm text-gray-400 max-w-sm mb-6 leading-relaxed">
+          Our Creative Director is analyzing your SKU. You will receive an uncompressed storyboard treatment and timeline within 2 hours.
+        </p>
+        <button id="resetFormBtn" type="button" class="px-6 py-2.5 rounded-full border border-white/20 text-xs font-semibold uppercase tracking-wider text-white hover:bg-white/10 transition-colors">
+          Submit Another SKU
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive 9:16 Video Modal -->
+  <div id="videoModal" class="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/90 backdrop-blur-xl opacity-0 pointer-events-none transition-all duration-300">
+    <div id="modalBackdropDismiss" class="absolute inset-0"></div>
+
+    <div id="modalChassis" class="relative z-10 w-full max-w-4xl max-h-[96vh] md:max-h-[90vh] bg-brand-surface border border-white/15 rounded-2xl sm:rounded-3xl overflow-hidden shadow-glow-modal flex flex-col md:flex-row transition-transform duration-200">
+      
+      <!-- Mobile Swipe-Down Pill -->
+      <div id="modalSwipePill" class="md:hidden w-full flex justify-center py-2 bg-black/40 cursor-grab shrink-0">
+        <div class="w-12 h-1 rounded-full bg-white/30"></div>
+      </div>
+
+      <!-- Desktop Nav Arrows -->
+      <button id="modalPrevBtn" aria-label="Previous Project" class="hidden md:flex absolute left-3 top-1/2 -translate-y-1/2 z-30 w-9 h-9 rounded-full bg-black/70 hover:bg-white text-white hover:text-black border border-white/20 items-center justify-center transition-all">
+        <i data-lucide="chevron-left" class="w-5 h-5"></i>
+      </button>
+      <button id="modalNextBtn" aria-label="Next Project" class="hidden md:flex absolute right-3 top-1/2 -translate-y-1/2 z-30 w-9 h-9 rounded-full bg-black/70 hover:bg-white text-white hover:text-black border border-white/20 items-center justify-center transition-all">
+        <i data-lucide="chevron-right" class="w-5 h-5"></i>
+      </button>
+
+      <!-- Close Button -->
+      <button id="closeModalBtn" aria-label="Close Modal" class="absolute top-2.5 right-2.5 sm:top-4 sm:right-4 z-30 p-2 sm:p-2.5 rounded-full bg-black/80 hover:bg-white text-white hover:text-black border border-white/20 transition-all duration-200 w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center">
+        <i data-lucide="x" class="w-4 h-4 sm:w-5 sm:h-5"></i>
+      </button>
+
+      <!-- Video Column -->
+      <div id="modalVideoZone" class="relative md:w-1/2 bg-black flex items-center justify-center p-2 sm:p-4 shrink-0 max-h-[38vh] sm:max-h-[44vh] md:max-h-none">
+        <div class="relative h-[36vh] sm:h-[42vh] md:h-[68vh] max-h-[520px] aspect-[9/16] rounded-xl sm:rounded-2xl overflow-hidden border border-white/20 bg-neutral-950 shadow-2xl interactive-video-player group cursor-pointer">
+          <video id="modalVideoPlayer" class="w-full h-full object-cover" playsinline webkit-playsinline loop></video>
+
+          <!-- Floating Video Controls Bar inside player -->
+          <div class="absolute bottom-2 inset-x-2 sm:bottom-3 sm:inset-x-3 p-1.5 sm:p-2.5 rounded-xl bg-black/75 backdrop-blur-md border border-white/10 flex items-center justify-between gap-2 text-white">
+            <button id="modalPlayPauseBtn" aria-label="Play or Pause" class="p-1 hover:bg-white/20 rounded-lg transition-colors w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center">
+              <i data-lucide="pause" id="modalPlayIcon" class="w-3.5 h-3.5 sm:w-4 sm:h-4"></i>
+            </button>
+
+            <!-- Video Progress Bar -->
+            <div class="flex-1 h-1.5 bg-white/20 rounded-full overflow-hidden cursor-pointer" id="videoProgressBarContainer">
+              <div id="videoProgressBar" class="h-full bg-white rounded-full w-0 transition-all duration-100"></div>
+            </div>
+
+            <button id="modalMuteBtn" aria-label="Mute or Unmute" class="p-1 hover:bg-white/20 rounded-lg transition-colors w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center">
+              <i data-lucide="volume-2" id="modalVolumeIcon" class="w-3.5 h-3.5 sm:w-4 sm:h-4"></i>
+            </button>
+          </div>
+
+          <div class="absolute top-2 left-2 px-2 py-0.5 rounded-md bg-black/60 backdrop-blur-md text-[9px] font-mono uppercase tracking-wider text-gray-300 border border-white/10 pointer-events-none">
+            9:16 Master
+          </div>
+        </div>
+      </div>
+
+      <!-- Project Dossier -->
+      <div class="md:w-1/2 p-4 sm:p-6 md:p-8 flex flex-col justify-between overflow-y-auto max-h-[52vh] sm:max-h-[50vh] md:max-h-[85vh]">
+        <div>
+          <div class="flex items-center justify-between gap-2 mb-2">
+            <span id="modalCategoryBadge" class="text-[9px] sm:text-[10px] uppercase font-bold tracking-widest px-2.5 py-1 rounded-full bg-white/10 text-white/90 border border-white/10">
+              Category
+            </span>
+            <button id="modalShareBtn" class="flex items-center gap-1.5 text-[10px] sm:text-[11px] text-gray-400 hover:text-white px-2.5 py-1 rounded-full border border-white/10 hover:border-white/30 transition-colors">
+              <i data-lucide="share-2" class="w-3 h-3 sm:w-3.5 sm:h-3.5"></i>
+              <span>Copy Link</span>
+            </button>
+          </div>
+
+          <h3 id="modalTitle" class="font-syne font-bold text-lg sm:text-2xl md:text-3xl text-white tracking-tight mt-1">
+            Project Title
+          </h3>
+          <p id="modalTagline" class="text-xs sm:text-sm font-medium text-gray-400 mt-0.5">
+            Deliverable Tagline
+          </p>
+
+          <div class="w-full h-px bg-white/10 my-2.5 sm:my-4"></div>
+
+          <div class="space-y-3 sm:space-y-4">
+            <div>
+              <h4 class="text-[10px] sm:text-xs uppercase tracking-wider text-gray-400 font-semibold mb-1">Production Scope</h4>
+              <p id="modalDesc" class="text-xs sm:text-sm text-gray-300 leading-relaxed">
+                Project description.
+              </p>
+            </div>
+
+            <div>
+              <h4 class="text-[10px] sm:text-xs uppercase tracking-wider text-gray-400 font-semibold mb-1.5">Pipeline Stack</h4>
+              <div id="modalTags" class="flex flex-wrap gap-1.5"></div>
+            </div>
+
+            <div class="p-3 sm:p-3.5 rounded-xl bg-white/[0.03] border border-white/10 flex items-center justify-between">
+              <div>
+                <div class="text-[10px] uppercase tracking-wider text-gray-400">Verified Impact</div>
+                <div id="modalMetric" class="text-xs sm:text-sm font-syne font-bold text-emerald-400 mt-0.5">4.2x ROAS Lift</div>
+              </div>
+              <div class="text-right">
+                <div class="text-[10px] uppercase tracking-wider text-gray-400">Turnaround Time</div>
+                <div class="text-xs sm:text-sm font-syne font-bold text-white mt-0.5">48 Hours</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pt-3 sm:pt-4 mt-3 sm:mt-5 border-t border-white/10 space-y-2">
+          <div class="flex items-center gap-2">
+            <a href="#contact" id="modalCommissionBtn" class="flex-1 py-2.5 sm:py-3 px-4 rounded-xl bg-white text-black font-semibold text-xs uppercase tracking-wider text-center hover:bg-neutral-200 active:scale-95 transition-all flex items-center justify-center gap-2">
+              <span>Commission Similar Style</span>
+              <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+            </a>
+          </div>
+
+          <div class="flex sm:hidden items-center justify-center gap-2 text-[10px] font-mono text-gray-400 pt-1">
+            <span>Swipe ↔ Next/Prev</span>
+            <span>•</span>
+            <span>Swipe ↓ Dismiss</span>
+          </div>
+
+          <div class="hidden sm:flex items-center justify-between text-[10px] font-mono text-gray-400 pt-1">
+            <span><kbd class="px-1.5 py-0.5 rounded bg-white/10 text-white">Space</kbd> Play/Pause</span>
+            <span><kbd class="px-1.5 py-0.5 rounded bg-white/10 text-white">M</kbd> Mute</span>
+            <span><kbd class="px-1.5 py-0.5 rounded bg-white/10 text-white">← →</kbd> Browse</span>
+            <span><kbd class="px-1.5 py-0.5 rounded bg-white/10 text-white">Esc</kbd> Close</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 15-Minute Pipeline Discovery Call Scheduler Modal -->
+  <div id="discoveryModal" class="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/90 backdrop-blur-xl opacity-0 pointer-events-none transition-all duration-300">
+    <div id="discoveryBackdropDismiss" class="absolute inset-0"></div>
+
+    <div class="relative z-10 w-full max-w-lg bg-brand-surface border border-white/15 rounded-2xl sm:rounded-3xl p-5 sm:p-8 shadow-glow-modal text-left max-h-[90vh] overflow-y-auto">
+      <button id="closeDiscoveryBtn" aria-label="Close Discovery Modal" class="absolute top-4 right-4 sm:top-5 sm:right-5 p-2 rounded-full bg-white/10 text-gray-300 hover:text-white transition-colors">
+        <i data-lucide="x" class="w-4 h-4 sm:w-5 sm:h-5"></i>
+      </button>
+
+      <div class="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-emerald-400 mb-1.5">
+        <i data-lucide="video" class="w-4 h-4"></i> Direct Pipeline Briefing
+      </div>
+      <h3 class="font-syne font-bold text-xl sm:text-2xl text-white">15-Min Discovery Call</h3>
+      <p class="text-xs text-gray-400 mt-1 mb-5 leading-relaxed">
+        Speak directly with our Creative Technologist to evaluate your SKU CAD readiness and obtain live turnaround slots.
+      </p>
+
+      <form id="discoveryCallForm" class="space-y-3.5 sm:space-y-4">
+        <div>
+          <label class="block text-xs uppercase tracking-wider font-semibold text-gray-300 mb-1">Your Name & Brand</label>
+          <input type="text" required placeholder="Marcus Vance (Aura Audio)" class="w-full px-4 py-2.5 rounded-xl bg-brand-black border border-white/10 text-white text-xs placeholder-gray-600 focus:outline-none focus:border-white/40" />
+        </div>
+
+        <div>
+          <label class="block text-xs uppercase tracking-wider font-semibold text-gray-300 mb-1">Email Address</label>
+          <input type="email" required placeholder="marcus@auraaudio.com" class="w-full px-4 py-2.5 rounded-xl bg-brand-black border border-white/10 text-white text-xs placeholder-gray-600 focus:outline-none focus:border-white/40" />
+        </div>
+
+        <div>
+          <label class="block text-xs uppercase tracking-wider font-semibold text-gray-300 mb-1">Select Preferred Slot (EST)</label>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+            <label class="p-2.5 rounded-xl bg-brand-black border border-white/10 flex items-center gap-2 cursor-pointer hover:border-white/30">
+              <input type="radio" name="callSlot" value="Tomorrow 11:00 AM" checked class="text-white" />
+              <span>Tomorrow 11:00 AM</span>
+            </label>
+            <label class="p-2.5 rounded-xl bg-brand-black border border-white/10 flex items-center gap-2 cursor-pointer hover:border-white/30">
+              <input type="radio" name="callSlot" value="Tomorrow 02:30 PM" class="text-white" />
+              <span>Tomorrow 02:30 PM</span>
+            </label>
+            <label class="p-2.5 rounded-xl bg-brand-black border border-white/10 flex items-center gap-2 cursor-pointer hover:border-white/30">
+              <input type="radio" name="callSlot" value="Thursday 10:00 AM" class="text-white" />
+              <span>Thursday 10:00 AM</span>
+            </label>
+            <label class="p-2.5 rounded-xl bg-brand-black border border-white/10 flex items-center gap-2 cursor-pointer hover:border-white/30">
+              <input type="radio" name="callSlot" value="Thursday 04:00 PM" class="text-white" />
+              <span>Thursday 04:00 PM</span>
+            </label>
+          </div>
+        </div>
+
+        <button type="submit" class="w-full mt-3 py-3 rounded-xl bg-white text-black font-syne font-bold text-xs uppercase tracking-wider hover:bg-neutral-200 active:scale-95 transition-all flex items-center justify-center gap-2">
+          <span>Confirm Calendar Invitation</span>
+          <i data-lucide="check" class="w-4 h-4"></i>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Sleek Toast Notification -->
+  <div id="toastNotification" class="fixed bottom-4 sm:bottom-6 right-4 sm:right-6 z-50 px-4 py-3 rounded-2xl bg-white text-black font-sans font-semibold text-xs shadow-2xl flex items-center gap-2.5 translate-y-20 opacity-0 pointer-events-none transition-all duration-300">
+    <i data-lucide="check-circle" class="w-4 h-4 text-emerald-600"></i>
+    <span id="toastMessage">Reel link copied to clipboard</span>
+  </div>
+
+  <!-- Footer -->
+  <footer class="py-12 sm:py-16 px-4 sm:px-6 border-t border-white/[0.08] max-w-7xl mx-auto pb-safe">
+    <div class="flex flex-col md:flex-row items-center justify-between gap-6 sm:gap-8">
+      <div class="flex flex-col items-center md:items-start text-center md:text-left">
+        <div class="flex items-center gap-2.5 mb-2">
+          <div class="w-7 h-7 rounded-full bg-white flex items-center justify-center text-black font-syne font-bold text-xs">
+            A
+          </div>
+          <span class="font-syne font-bold text-base sm:text-lg tracking-tight text-white">ADVORA<span class="text-white/40">.AI</span></span>
+        </div>
+        <p class="text-xs text-gray-400 max-w-sm">
+          Next-Generation Commercial Production & Virtual CGI Studio. Delivering broadcast-grade films with zero physical shoot friction.
+        </p>
+      </div>
+
+      <div class="flex items-center gap-3 sm:gap-4 text-xs font-medium text-gray-400">
+        <a href="#" class="px-3 py-1.5 rounded-full border border-white/10 hover:border-white/30 hover:text-white transition-all flex items-center gap-1.5">
+          <i data-lucide="instagram" class="w-3.5 h-3.5"></i> Instagram
+        </a>
+        <a href="#" class="px-3 py-1.5 rounded-full border border-white/10 hover:border-white/30 hover:text-white transition-all flex items-center gap-1.5">
+          <i data-lucide="twitter" class="w-3.5 h-3.5"></i> X
+        </a>
+        <a href="#" class="px-3 py-1.5 rounded-full border border-white/10 hover:border-white/30 hover:text-white transition-all flex items-center gap-1.5">
+          <i data-lucide="linkedin" class="w-3.5 h-3.5"></i> LinkedIn
+        </a>
+      </div>
+
+      <div class="flex flex-col items-center md:items-end text-xs text-gray-400">
+        <button id="backToTopBtn" class="flex items-center gap-1.5 text-gray-300 hover:text-white mb-1.5 transition-colors">
+          <span>Back to Top</span>
+          <i data-lucide="arrow-up" class="w-3.5 h-3.5"></i>
+        </button>
+        <div>© 2026 ADVORA AI Studios Inc. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (window.lucide) {
+        window.lucide.createIcons();
+      }
+
+      /* 1. Global Toast Helper */
+      const toast = document.getElementById('toastNotification');
+      const toastMessage = document.getElementById('toastMessage');
+      let toastTimer = null;
+
+      function showToast(msg) {
+        if (!toast || !toastMessage) return;
+        toastMessage.textContent = msg;
+        toast.classList.remove('translate-y-20', 'opacity-0', 'pointer-events-none');
+        toast.classList.add('translate-y-0', 'opacity-100');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => {
+          toast.classList.add('translate-y-20', 'opacity-0', 'pointer-events-none');
+          toast.classList.remove('translate-y-0', 'opacity-100');
+        }, 3000);
+      }
+
+      /* 2. Mobile Menu Logic */
+      const mobileBtn = document.getElementById('mobileMenuBtn');
+      const mobileMenu = document.getElementById('mobileMenu');
+      const closeMobileBtn = document.getElementById('closeMobileMenu');
+      const mobileLinks = document.querySelectorAll('.mobile-link');
+
+      function toggleMobile(open) {
+        if (!mobileMenu) return;
+        if (open) {
+          mobileMenu.classList.remove('opacity-0', 'pointer-events-none');
+          mobileMenu.classList.add('opacity-100', 'pointer-events-auto');
+          document.body.style.overflow = 'hidden';
+        } else {
+          mobileMenu.classList.add('opacity-0', 'pointer-events-none');
+          mobileMenu.classList.remove('opacity-100', 'pointer-events-auto');
+          document.body.style.overflow = '';
+        }
+      }
+
+      if (mobileBtn) mobileBtn.addEventListener('click', () => toggleMobile(true));
+      if (closeMobileBtn) closeMobileBtn.addEventListener('click', () => toggleMobile(false));
+      mobileLinks.forEach(link => {
+        link.addEventListener('click', () => toggleMobile(false));
+      });
+
+      /* 3. Smart Video Playback & Viewport Observer */
+      const gridVideos = document.querySelectorAll('.smart-grid-video');
+      
+      gridVideos.forEach(v => {
+        v.muted = true;
+        const playPromise = v.play();
+        if (playPromise !== undefined) {
+          playPromise.catch(() => {});
+        }
+      });
+
+      if ('IntersectionObserver' in window) {
+        const videoObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            const video = entry.target;
+            if (entry.isIntersecting) {
+              const p = video.play();
+              if (p !== undefined) p.catch(() => {});
+            } else {
+              video.pause();
+            }
+          });
+        }, {
+          threshold: 0.15
+        });
+
+        gridVideos.forEach(v => videoObserver.observe(v));
+      }
+
+      /* 4. Local Video Connector System (Ensures 100% video display in preview iframes) */
+      const bulkVideoInput = document.getElementById('bulkVideoInput');
+      const projectCards = document.querySelectorAll('.project-card');
+
+      if (bulkVideoInput) {
+        bulkVideoInput.addEventListener('change', (e) => {
+          const files = Array.from(e.target.files);
+          if (!files.length) return;
+
+          let attachedCount = 0;
+          files.forEach(file => {
+            const blobUrl = URL.createObjectURL(file);
+            const fileName = file.name.toLowerCase();
+
+            projectCards.forEach(card => {
+              const src = (card.getAttribute('data-src') || '').toLowerCase();
+              const fallbackSrc = (card.getAttribute('data-fallback-src') || '').toLowerCase();
+              const altSrc = (card.getAttribute('data-alt-src') || '').toLowerCase();
+
+              if (fileName.includes(src.split('.')[0]) || 
+                  fileName.includes(fallbackSrc.split('.')[0]) ||
+                  fileName.includes(altSrc.split('.')[0]) ||
+                  (src.includes('clean') && fileName.includes('clean')) ||
+                  (src.includes('volt') && fileName.includes('volt')) ||
+                  (src.includes('clover') && fileName.includes('85796')) ||
+                  (src.includes('flora') && fileName.includes('89291'))) {
+                
+                card.setAttribute('data-blob-url', blobUrl);
+                const vid = card.querySelector('video');
+                if (vid) {
+                  vid.src = blobUrl;
+                  vid.play().catch(() => {});
+                }
+                attachedCount++;
+              }
+            });
+          });
+
+          showToast(`${attachedCount || files.length} videos linked & playing live!`);
+        });
+      }
+
+      /* 5. Category Filter System */
+      const filterButtons = document.querySelectorAll('.filter-btn');
+
+      filterButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          filterButtons.forEach(b => {
+            b.classList.remove('bg-white', 'text-black');
+            b.classList.add('text-gray-400');
+          });
+          btn.classList.add('bg-white', 'text-black');
+          btn.classList.remove('text-gray-400');
+
+          const filter = btn.getAttribute('data-filter');
+
+          projectCards.forEach(card => {
+            const category = card.getAttribute('data-category');
+            if (filter === 'all' || category === filter) {
+              card.style.display = 'block';
+              setTimeout(() => {
+                card.style.opacity = '1';
+                card.style.transform = 'scale(1)';
+              }, 10);
+            } else {
+              card.style.opacity = '0';
+              card.style.transform = 'scale(0.96)';
+              setTimeout(() => {
+                card.style.display = 'none';
+              }, 200);
+            }
+          });
+        });
+      });
+
+      /* 6. Interactive Video Modal & Carousel Engine */
+      const videoModal = document.getElementById('videoModal');
+      const modalBackdropDismiss = document.getElementById('modalBackdropDismiss');
+      const closeModalBtn = document.getElementById('closeModalBtn');
+      const modalVideoPlayer = document.getElementById('modalVideoPlayer');
+      const modalPlayPauseBtn = document.getElementById('modalPlayPauseBtn');
+      const modalPlayIcon = document.getElementById('modalPlayIcon');
+      const modalMuteBtn = document.getElementById('modalMuteBtn');
+      const modalVolumeIcon = document.getElementById('modalVolumeIcon');
+      const videoProgressBar = document.getElementById('videoProgressBar');
+      const videoProgressBarContainer = document.getElementById('videoProgressBarContainer');
+      const modalCategoryBadge = document.getElementById('modalCategoryBadge');
+      const modalTitle = document.getElementById('modalTitle');
+      const modalTagline = document.getElementById('modalTagline');
+      const modalDesc = document.getElementById('modalDesc');
+      const modalTags = document.getElementById('modalTags');
+      const modalMetric = document.getElementById('modalMetric');
+      const modalCommissionBtn = document.getElementById('modalCommissionBtn');
+      const modalShareBtn = document.getElementById('modalShareBtn');
+      const modalPrevBtn = document.getElementById('modalPrevBtn');
+      const modalNextBtn = document.getElementById('modalNextBtn');
+      const modalVideoZone = document.getElementById('modalVideoZone');
+      const modalSwipePill = document.getElementById('modalSwipePill');
+
+      let currentProjectIndex = 0;
+      const allCardsArray = Array.from(projectCards);
+
+      function updatePlayIcon(isPaused) {
+        if (!modalPlayIcon) return;
+        modalPlayIcon.setAttribute('data-lucide', isPaused ? 'play' : 'pause');
+        if (window.lucide) window.lucide.createIcons();
+      }
+
+      function updateVolumeIcon(isMuted) {
+        if (!modalVolumeIcon) return;
+        modalVolumeIcon.setAttribute('data-lucide', isMuted ? 'volume-x' : 'volume-2');
+        if (window.lucide) window.lucide.createIcons();
+      }
+
+      function openModalByIndex(index, updateHash = true) {
+        if (index < 0) index = allCardsArray.length - 1;
+        if (index >= allCardsArray.length) index = 0;
+        currentProjectIndex = index;
+
+        const card = allCardsArray[index];
+        const title = card.getAttribute('data-title') || '';
+        const tagline = card.getAttribute('data-tagline') || '';
+        const desc = card.getAttribute('data-desc') || '';
+        const blobUrl = card.getAttribute('data-blob-url');
+        const src = blobUrl || card.getAttribute('data-src') || '';
+        const category = card.getAttribute('data-category') || '';
+        const tags = (card.getAttribute('data-tags') || '').split(',');
+        const metric = card.getAttribute('data-metrics') || 'Verified 4.2x ROAS Lift';
+        const slug = card.getAttribute('data-slug') || '';
+
+        if (modalTitle) modalTitle.textContent = title;
+        if (modalTagline) modalTagline.textContent = tagline;
+        if (modalDesc) modalDesc.textContent = desc;
+        if (modalMetric) modalMetric.textContent = metric;
+        if (modalCategoryBadge) modalCategoryBadge.textContent = category.toUpperCase();
+
+        if (modalTags) {
+          modalTags.innerHTML = '';
+          tags.forEach(tag => {
+            if (tag.trim()) {
+              const span = document.createElement('span');
+              span.className = 'px-2 py-0.5 rounded text-[10px] bg-white/5 border border-white/10 text-gray-300 font-mono';
+              span.textContent = tag.trim();
+              modalTags.appendChild(span);
+            }
+          });
+        }
+
+        if (modalVideoPlayer) {
+          modalVideoPlayer.src = src;
+
+          modalVideoPlayer.onerror = () => {
+            const fallbackSrc = card.getAttribute('data-fallback-src');
+            const altSrc = card.getAttribute('data-alt-src');
+            if (fallbackSrc && !modalVideoPlayer.src.includes(fallbackSrc)) {
+              modalVideoPlayer.src = fallbackSrc;
+              modalVideoPlayer.play().catch(() => {});
+            } else if (altSrc && !modalVideoPlayer.src.includes(altSrc)) {
+              modalVideoPlayer.src = altSrc;
+              modalVideoPlayer.play().catch(() => {});
+            }
+          };
+
+          modalVideoPlayer.muted = false;
+          modalVideoPlayer.currentTime = 0;
+
+          const playPromise = modalVideoPlayer.play();
+          if (playPromise !== undefined) {
+            playPromise.catch(() => {
+              modalVideoPlayer.muted = true;
+              updateVolumeIcon(true);
+              modalVideoPlayer.play().catch(() => {});
+            });
+          }
+          updatePlayIcon(false);
+          updateVolumeIcon(modalVideoPlayer.muted);
+        }
+
+        if (videoModal) {
+          videoModal.classList.remove('opacity-0', 'pointer-events-none');
+          videoModal.classList.add('opacity-100', 'pointer-events-auto');
+        }
+        document.body.style.overflow = 'hidden';
+
+        if (updateHash && slug) {
+          history.replaceState(null, '', `#${slug}`);
+        }
+
+        if (window.lucide) window.lucide.createIcons();
+      }
+
+      function closeModal() {
+        if (!videoModal) return;
+        videoModal.classList.add('opacity-0', 'pointer-events-none');
+        videoModal.classList.remove('opacity-100', 'pointer-events-auto');
+        document.body.style.overflow = '';
+        if (modalVideoPlayer) {
+          modalVideoPlayer.pause();
+          modalVideoPlayer.src = '';
+        }
+        history.replaceState(null, '', window.location.pathname);
+      }
+
+      projectCards.forEach((card, index) => {
+        card.addEventListener('click', () => openModalByIndex(index, true));
+      });
+
+      if (closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
+      if (modalBackdropDismiss) modalBackdropDismiss.addEventListener('click', closeModal);
+      if (modalCommissionBtn) modalCommissionBtn.addEventListener('click', closeModal);
+
+      if (modalPrevBtn) modalPrevBtn.addEventListener('click', () => openModalByIndex(currentProjectIndex - 1));
+      if (modalNextBtn) modalNextBtn.addEventListener('click', () => openModalByIndex(currentProjectIndex + 1));
+
+      if (modalVideoPlayer) {
+        modalVideoPlayer.addEventListener('click', () => {
+          if (modalVideoPlayer.paused) {
+            modalVideoPlayer.play();
+            updatePlayIcon(false);
+          } else {
+            modalVideoPlayer.pause();
+            updatePlayIcon(true);
+          }
+        });
+      }
+
+      if (modalPlayPauseBtn) {
+        modalPlayPauseBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          if (modalVideoPlayer.paused) {
+            modalVideoPlayer.play();
+            updatePlayIcon(false);
+          } else {
+            modalVideoPlayer.pause();
+            updatePlayIcon(true);
+          }
+        });
+      }
+
+      if (modalMuteBtn) {
+        modalMuteBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          modalVideoPlayer.muted = !modalVideoPlayer.muted;
+          updateVolumeIcon(modalVideoPlayer.muted);
+        });
+      }
+
+      if (modalVideoPlayer) {
+        modalVideoPlayer.addEventListener('timeupdate', () => {
+          if (modalVideoPlayer.duration && videoProgressBar) {
+            const progress = (modalVideoPlayer.currentTime / modalVideoPlayer.duration) * 100;
+            videoProgressBar.style.width = `${progress}%`;
+          }
+        });
+      }
+
+      if (videoProgressBarContainer) {
+        videoProgressBarContainer.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const rect = videoProgressBarContainer.getBoundingClientRect();
+          const clickX = e.clientX - rect.left;
+          const width = rect.width;
+          if (modalVideoPlayer.duration) {
+            modalVideoPlayer.currentTime = (clickX / width) * modalVideoPlayer.duration;
+          }
+        });
+      }
+
+      if (modalShareBtn) {
+        modalShareBtn.addEventListener('click', () => {
+          const currentCard = allCardsArray[currentProjectIndex];
+          const slug = currentCard.getAttribute('data-slug') || '';
+          const shareUrl = `${window.location.origin}${window.location.pathname}#${slug}`;
+
+          const tempInput = document.createElement('input');
+          tempInput.value = shareUrl;
+          document.body.appendChild(tempInput);
+          tempInput.select();
+          try {
+            document.execCommand('copy');
+            showToast('Reel URL copied to clipboard!');
+          } catch (err) {
+            showToast('Reel URL: ' + shareUrl);
+          }
+          document.body.removeChild(tempInput);
+        });
+      }
+
+      window.addEventListener('keydown', (e) => {
+        const isModalOpen = videoModal && !videoModal.classList.contains('pointer-events-none');
+        if (!isModalOpen) return;
+
+        if (e.key === 'Escape') {
+          closeModal();
+        } else if (e.code === 'Space') {
+          e.preventDefault();
+          if (modalVideoPlayer.paused) {
+            modalVideoPlayer.play();
+            updatePlayIcon(false);
+          } else {
+            modalVideoPlayer.pause();
+            updatePlayIcon(true);
+          }
+        } else if (e.key === 'm' || e.key === 'M') {
+          modalVideoPlayer.muted = !modalVideoPlayer.muted;
+          updateVolumeIcon(modalVideoPlayer.muted);
+        } else if (e.key === 'ArrowLeft') {
+          openModalByIndex(currentProjectIndex - 1);
+        } else if (e.key === 'ArrowRight') {
+          openModalByIndex(currentProjectIndex + 1);
+        }
+      });
+
+      /* 7. Isolated Mobile Swipe Gestures */
+      let touchStartX = 0;
+      let touchStartY = 0;
+      let touchEndX = 0;
+      let touchEndY = 0;
+
+      function handleModalSwipe() {
+        const deltaX = touchEndX - touchStartX;
+        const deltaY = touchEndY - touchStartY;
+        const absX = Math.abs(deltaX);
+        const absY = Math.abs(deltaY);
+
+        if (absX > 50 && absX > absY) {
+          if (deltaX < 0) {
+            openModalByIndex(currentProjectIndex + 1);
+          } else {
+            openModalByIndex(currentProjectIndex - 1);
+          }
+        } else if (deltaY > 70 && absY > absX) {
+          closeModal();
+        }
+      }
+
+      const touchZones = [modalVideoZone, modalSwipePill].filter(Boolean);
+      touchZones.forEach(zone => {
+        zone.addEventListener('touchstart', (e) => {
+          touchStartX = e.changedTouches[0].screenX;
+          touchStartY = e.changedTouches[0].screenY;
+        }, { passive: true });
+
+        zone.addEventListener('touchend', (e) => {
+          touchEndX = e.changedTouches[0].screenX;
+          touchEndY = e.changedTouches[0].screenY;
+          handleModalSwipe();
+        }, { passive: true });
+      });
+
+      const initialHash = window.location.hash.replace('#', '');
+      if (initialHash) {
+        const matchIdx = allCardsArray.findIndex(card => card.getAttribute('data-slug') === initialHash);
+        if (matchIdx !== -1) {
+          openModalByIndex(matchIdx, false);
+        }
+      }
+
+      /* 8. Interactive Before/After Split Comparison Slider */
+      const sliderContainer = document.getElementById('sliderContainer');
+      const sliderForeground = document.getElementById('sliderForegroundLayer');
+      const sliderHandle = document.getElementById('sliderHandle');
+      let isDraggingSlider = false;
+
+      function updateSliderPosition(clientX) {
+        if (!sliderContainer || !sliderForeground || !sliderHandle) return;
+        const rect = sliderContainer.getBoundingClientRect();
+        let posX = clientX - rect.left;
+        if (posX < 0) posX = 0;
+        if (posX > rect.width) posX = rect.width;
+
+        const percentage = (posX / rect.width) * 100;
+        sliderForeground.style.clipPath = `inset(0 ${100 - percentage}% 0 0)`;
+        sliderHandle.style.left = `${percentage}%`;
+      }
+
+      if (sliderContainer) {
+        sliderContainer.addEventListener('mousedown', (e) => {
+          isDraggingSlider = true;
+          updateSliderPosition(e.clientX);
+        });
+
+        window.addEventListener('mousemove', (e) => {
+          if (!isDraggingSlider) return;
+          updateSliderPosition(e.clientX);
+        });
+
+        window.addEventListener('mouseup', () => {
+          isDraggingSlider = false;
+        });
+
+        sliderContainer.addEventListener('touchstart', (e) => {
+          isDraggingSlider = true;
+          if (e.touches.length > 0) updateSliderPosition(e.touches[0].clientX);
+        }, { passive: true });
+
+        window.addEventListener('touchmove', (e) => {
+          if (!isDraggingSlider) return;
+          if (e.touches.length > 0) updateSliderPosition(e.touches[0].clientX);
+        }, { passive: true });
+
+        window.addEventListener('touchend', () => {
+          isDraggingSlider = false;
+        });
+
+        const setClayBtn = document.getElementById('setClayViewBtn');
+        const setSplitBtn = document.getElementById('setSplitViewBtn');
+        const setFinalBtn = document.getElementById('setFinalViewBtn');
+
+        if (setClayBtn) {
+          setClayBtn.addEventListener('click', () => {
+            sliderForeground.style.clipPath = 'inset(0 0% 0 0)';
+            sliderHandle.style.left = '100%';
+          });
+        }
+        if (setSplitBtn) {
+          setSplitBtn.addEventListener('click', () => {
+            sliderForeground.style.clipPath = 'inset(0 50% 0 0)';
+            sliderHandle.style.left = '50%';
+          });
+        }
+        if (setFinalBtn) {
+          setFinalBtn.addEventListener('click', () => {
+            sliderForeground.style.clipPath = 'inset(0 100% 0 0)';
+            sliderHandle.style.left = '0%';
+          });
+        }
+      }
+
+      /* 9. Production Scope & Cost Calculator */
+      let calcState = {
+        sku: 1,
+        pack: 'hooks',
+        speed: 'standard'
+      };
+
+      const skuButtons = document.querySelectorAll('.sku-selector-btn');
+      const packButtons = document.querySelectorAll('.pack-selector-btn');
+      const speedButtons = document.querySelectorAll('.speed-selector-btn');
+      const advoraPriceDisplay = document.getElementById('advoraPriceDisplay');
+      const tradPriceDisplay = document.getElementById('tradPriceDisplay');
+      const savingsDisplay = document.getElementById('savingsDisplay');
+      const turnaroundDisplay = document.getElementById('turnaroundDisplay');
+      const skuCountDisplay = document.getElementById('skuCountDisplay');
+      const lockEstimateBtn = document.getElementById('lockEstimateBtn');
+
+      function calculateEstimate() {
+        let baseAdvora = 2800;
+        let baseTrad = 22000;
+        let turnText = '72 Hours';
+
+        if (calcState.pack === 'hooks') {
+          baseAdvora = 2800;
+          baseTrad = 22000;
+        } else if (calcState.pack === 'spot') {
+          baseAdvora = 4800;
+          baseTrad = 34000;
+        } else if (calcState.pack === 'full') {
+          baseAdvora = 6900;
+          baseTrad = 48000;
+        }
+
+        if (calcState.sku === 3) {
+          baseAdvora *= 1.8;
+          baseTrad *= 2.2;
+        } else if (calcState.sku === 5) {
+          baseAdvora *= 2.7;
+          baseTrad *= 3.5;
+        }
+
+        if (calcState.speed === 'express') {
+          baseAdvora *= 1.25;
+          turnText = '24-48 Hours Express';
+        } else {
+          turnText = '72 Hours Standard';
+        }
+
+        const finalAdvora = Math.round(baseAdvora / 100) * 100;
+        const finalTrad = Math.round(baseTrad / 100) * 100;
+        const savedAmount = finalTrad - finalAdvora;
+        const savedPercent = Math.round((savedAmount / finalTrad) * 100);
+
+        if (advoraPriceDisplay) advoraPriceDisplay.textContent = `$${finalAdvora.toLocaleString()}`;
+        if (tradPriceDisplay) tradPriceDisplay.textContent = `$${finalTrad.toLocaleString()}+`;
+        if (savingsDisplay) savingsDisplay.textContent = `$${savedAmount.toLocaleString()} (${savedPercent}%)`;
+        if (turnaroundDisplay) turnaroundDisplay.textContent = turnText;
+        if (skuCountDisplay) skuCountDisplay.textContent = `${calcState.sku} ${calcState.sku === 1 ? 'Hero SKU' : 'SKUs'}`;
+      }
+
+      skuButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          skuButtons.forEach(b => {
+            b.classList.remove('bg-white', 'text-black', 'border-white/30');
+            b.classList.add('bg-black/40', 'text-gray-300', 'border-white/10');
+          });
+          btn.classList.add('bg-white', 'text-black', 'border-white/30');
+          btn.classList.remove('bg-black/40', 'text-gray-300', 'border-white/10');
+          calcState.sku = parseInt(btn.getAttribute('data-sku') || '1');
+          calculateEstimate();
+        });
+      });
+
+      packButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          packButtons.forEach(b => {
+            b.classList.remove('bg-white', 'text-black', 'border-white/30');
+            b.classList.add('bg-black/40', 'text-gray-300', 'border-white/10');
+          });
+          btn.classList.add('bg-white', 'text-black', 'border-white/30');
+          btn.classList.remove('bg-black/40', 'text-gray-300', 'border-white/10');
+          calcState.pack = btn.getAttribute('data-pack') || 'hooks';
+          calculateEstimate();
+        });
+      });
+
+      speedButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          speedButtons.forEach(b => {
+            b.classList.remove('bg-white', 'text-black', 'border-white/30');
+            b.classList.add('bg-black/40', 'text-gray-300', 'border-white/10');
+          });
+          btn.classList.add('bg-white', 'text-black', 'border-white/30');
+          btn.classList.remove('bg-black/40', 'text-gray-300', 'border-white/10');
+          calcState.speed = btn.getAttribute('data-speed') || 'standard';
+          calculateEstimate();
+        });
+      });
+
+      if (lockEstimateBtn) {
+        lockEstimateBtn.addEventListener('click', () => {
+          const contactSec = document.getElementById('contact');
+          const visionTextarea = document.querySelector('textarea');
+
+          if (contactSec) contactSec.scrollIntoView({ behavior: 'smooth' });
+          if (visionTextarea) {
+            const packName = calcState.pack === 'hooks' ? 'Viral Hooks Pack' : (calcState.pack === 'spot' ? 'Hero 3D Cinematic Spot' : 'Omni-Channel Suite');
+            visionTextarea.value = `[Calculator Estimate]\nScope: ${packName} for ${calcState.sku} SKU(s).\nSpeed: ${calcState.speed === 'express' ? '24-48h Express' : '72h Standard'}.\nTarget Budget: ${advoraPriceDisplay.textContent}.`;
+          }
+          showToast('Estimate transferred to your brief below.');
+        });
+      }
+
+      /* 10. FAQ Accordion Logic */
+      const faqItems = document.querySelectorAll('.faq-item');
+      faqItems.forEach(item => {
+        const questionBtn = item.querySelector('.faq-question');
+        const answer = item.querySelector('.faq-answer');
+        const icon = item.querySelector('.faq-icon');
+
+        if (questionBtn && answer) {
+          questionBtn.addEventListener('click', () => {
+            const isCurrentlyOpen = !answer.classList.contains('hidden');
+
+            faqItems.forEach(otherItem => {
+              const otherAns = otherItem.querySelector('.faq-answer');
+              const otherIcon = otherItem.querySelector('.faq-icon');
+              if (otherAns) otherAns.classList.add('hidden');
+              if (otherIcon) otherIcon.style.transform = 'rotate(0deg)';
+              otherItem.classList.remove('border-white/30');
+            });
+
+            if (!isCurrentlyOpen) {
+              answer.classList.remove('hidden');
+              item.classList.add('border-white/30');
+              if (icon) icon.style.transform = 'rotate(180deg)';
+            }
+          });
+        }
+      });
+
+      /* 11. Discovery Call Modal Logic */
+      const discoveryModal = document.getElementById('discoveryModal');
+      const navBookCallBtn = document.getElementById('navBookCallBtn');
+      const mobileBookCallBtn = document.getElementById('mobileBookCallBtn');
+      const closeDiscoveryBtn = document.getElementById('closeDiscoveryBtn');
+      const discoveryBackdropDismiss = document.getElementById('discoveryBackdropDismiss');
+      const discoveryCallForm = document.getElementById('discoveryCallForm');
+
+      function toggleDiscoveryModal(open) {
+        if (!discoveryModal) return;
+        if (open) {
+          discoveryModal.classList.remove('opacity-0', 'pointer-events-none');
+          discoveryModal.classList.add('opacity-100', 'pointer-events-auto');
+          document.body.style.overflow = 'hidden';
+        } else {
+          discoveryModal.classList.add('opacity-0', 'pointer-events-none');
+          discoveryModal.classList.remove('opacity-100', 'pointer-events-auto');
+          document.body.style.overflow = '';
+        }
+      }
+
+      if (navBookCallBtn) navBookCallBtn.addEventListener('click', () => toggleDiscoveryModal(true));
+      if (mobileBookCallBtn) {
+        mobileBookCallBtn.addEventListener('click', () => {
+          toggleMobile(false);
+          toggleDiscoveryModal(true);
+        });
+      }
+      if (closeDiscoveryBtn) closeDiscoveryBtn.addEventListener('click', () => toggleDiscoveryModal(false));
+      if (discoveryBackdropDismiss) discoveryBackdropDismiss.addEventListener('click', () => toggleDiscoveryModal(false));
+
+      if (discoveryCallForm) {
+        discoveryCallForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          toggleDiscoveryModal(false);
+          showToast('Discovery Call booked! Calendar invite dispatched.');
+          discoveryCallForm.reset();
+        });
+      }
+
+      /* 12. Pilot Form Submission Simulation */
+      const pilotForm = document.getElementById('pilotForm');
+      const submitBtn = document.getElementById('submitBtn');
+      const formSuccessMessage = document.getElementById('formSuccessMessage');
+      const resetFormBtn = document.getElementById('resetFormBtn');
+
+      if (pilotForm && submitBtn && formSuccessMessage) {
+        pilotForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          submitBtn.disabled = true;
+          submitBtn.innerHTML = `
+            <svg class="animate-spin -ml-1 mr-2 h-4 w-4 text-black" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+            Generating Treatment...
+          `;
+
+          setTimeout(() => {
+            formSuccessMessage.classList.remove('opacity-0', 'pointer-events-none');
+            formSuccessMessage.classList.add('opacity-100', 'pointer-events-auto');
+            pilotForm.reset();
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = `
+              <span>Submit Pilot Request</span>
+              <i data-lucide="send" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+            `;
+            if (window.lucide) window.lucide.createIcons();
+          }, 900);
+        });
+
+        if (resetFormBtn) {
+          resetFormBtn.addEventListener('click', () => {
+            formSuccessMessage.classList.add('opacity-0', 'pointer-events-none');
+            formSuccessMessage.classList.remove('opacity-100', 'pointer-events-auto');
+          });
+        }
+      }
+
+      /* 13. Smooth Back to Top */
+      const backToTopBtn = document.getElementById('backToTopBtn');
+      if (backToTopBtn) {
+        backToTopBtn.addEventListener('click', () => {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      }
+    });
+  </script>
+</body>
+</html>
